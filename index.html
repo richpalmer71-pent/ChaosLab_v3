@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaos-Lab — Rich Palmer, Designer</title>
+  <meta name="description" content="Rich Palmer — Graphic & Digital Designer based in Nottingham. 35+ years experience across brand, print, digital, UX and Ai-driven design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0f0f0f;
+    --surface: #151515;
+    --surface2: #1a1a1a;
+    --border: rgba(255,255,255,0.07);
+    --border-mid: rgba(255,255,255,0.13);
+    --text-primary: #f2f2f2;
+    --text-secondary: #a0a0a0;
+    --text-muted: #464646;
+    --accent: #E8541A;
+    --font: 'Inter', 'Helvetica Neue', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.25;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* MAX WIDTH CONTAINER */
+  .site-wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: rgba(15,15,15,0.94);
+    backdrop-filter: blur(16px);
+    padding: 0 3rem;
+  }
+
+  .nav-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.4rem 0;
+    position: relative;
+  }
+  .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .logo { flex: 1; }
+  .nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .nav-active {
+    color: var(--text-primary) !important;
+  }
+
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border-mid);
+    padding: 0.45rem 1rem;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.25); }
+
+  /* HERO */
+  .hero {
+    min-height: 65vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-top {
+    position: absolute; top: 5.5rem; left: 3rem; right: 3rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+
+  .hero-status {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+
+  .status-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+  .hero-location {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .hero-heading {
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    max-width: 860px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-heading .dim { color: var(--text-muted); font-weight: 400; }
+
+  .hero-bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 440px;
+    line-height: 1.25;
+  }
+
+  .hero-actions {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  .hero-link {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  .hero-link:hover { color: var(--text-primary); }
+  .hero-link .arrow { transition: transform 0.2s; display: inline-block; }
+  .hero-link:hover .arrow { transform: translate(2px, -2px); }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 3rem;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 5rem;
+  }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-index {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  /* WORK */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .work-card {
+    background: var(--black);
+    padding: 2.5rem;
+    cursor: pointer;
+    transition: background 0.25s;
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+
+  .work-card:hover { background: var(--surface); }
+
+  .work-card.featured {
+    grid-column: span 2;
+    flex-direction: row; gap: 3rem;
+    align-items: center;
+  }
+
+  .work-thumb {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .work-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .work-card:hover .work-thumb img { transform: scale(1.03); }
+
+  .work-thumb.large { width: 340px; height: 255px; }
+  .work-thumb.small { width: 100%; aspect-ratio: 4/3; }
+
+  .thumb-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .work-meta { flex: 1; }
+
+  .work-tag {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .work-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+  }
+
+  .work-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .work-page-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .work-thumb.small {
+    display: block;
+    text-decoration: none;
+  }
+  .work-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+  }
+
+  .work-card:hover .work-link { color: var(--text-primary); }
+
+  .work-num {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: block;
+    letter-spacing: 0.04em;
+  }
+
+  .work-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .work-img-placeholder img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .work-card:hover .work-img-placeholder img { transform: scale(1.03); }
+
+  .work-thumb-ph-text {
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  .logo-brand { color: var(--accent); }
+
+  .contact-envelope {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .contact-envelope:hover { opacity: 0.75; }
+  .contact-envelope svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  .nav-email {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-email:hover { opacity: 0.75; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .about-availability {
+    margin-top: 2rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .stat-cell {
+    background: var(--black);
+    padding: 1.75rem;
+  }
+
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .disciplines { display: flex; flex-direction: column; }
+
+  .discipline-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .discipline-name {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  .discipline-years {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+  }
+
+  .service-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  .service-num {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .service-title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 0.6rem; } /* override */ .service-title {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+    line-height: 1.3;
+  }
+
+  .service-desc {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.25;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-heading {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-sub {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 2rem;
+  }
+
+  .contact-email {
+    display: block;
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-mid);
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+
+  .contact-links { display: flex; flex-direction: column; }
+
+  .contact-link-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .contact-link-row:hover { color: var(--text-primary); }
+
+  .contact-detail {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .contact-detail p { margin-bottom: 0.5rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .footer-coords {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-heading { animation: fadeUp 0.7s ease both 0.15s; }
+  .hero-bottom { animation: fadeUp 0.7s ease both 0.3s; }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text-secondary);
+    transition: all 0.25s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--black);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2rem;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--text-secondary); }
+  .mobile-menu-footer {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2rem;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* TABLET */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-top { left: 1.5rem; right: 1.5rem; top: 5rem; }
+
+    .work-grid { grid-template-columns: 1fr 1fr; }
+    .work-card.featured { grid-column: span 2; flex-direction: column; }
+    .work-thumb.large { width: 100%; height: 240px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .nav-right { margin-left: auto; }
+
+    .hero { padding: 0 1.25rem 3rem; min-height: 100svh; }
+    .hero-top { left: 1.25rem; right: 1.25rem; top: 4.5rem; flex-direction: column; gap: 0.4rem; }
+    .hero-heading { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 2rem; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .hero-actions { align-items: flex-start; flex-direction: row; gap: 1.5rem; }
+
+    section { padding: 3rem 1.25rem; }
+
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card { padding: 1.5rem; }
+    .work-card.featured { grid-column: span 1; flex-direction: column; }
+    .work-thumb.large { width: 100%; height: 200px; }
+    .work-thumb.small { aspect-ratio: 4/3; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-text p { font-size: 15px; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .stat-cell { padding: 1.25rem; }
+    .stat-num { font-size: 1.8rem; }
+
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 1.75rem 1.25rem; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-heading { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+    .contact-sub { font-size: 15px; }
+
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem 1.25rem; }
+    .footer-coords { display: none; }
+  }
+
+  /* CASE STUDY SPECIFIC */
+  .cs-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    border-bottom: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .cs-hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface2);
+  }
+
+  .cs-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cs-hero-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5rem 4rem 5rem 4rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .cs-back {
+    position: absolute;
+    top: 5.5rem;
+    left: 4rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .cs-back:hover { color: var(--text-primary); }
+  .cs-back-arrow {
+    display: inline-block;
+    transform: rotate(225deg);
+  }
+
+  .cs-tag {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .cs-title {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.08;
+    margin-bottom: 2rem;
+  }
+
+  .cs-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .cs-meta-cell {
+    background: var(--black);
+    padding: 1.25rem 0;
+    padding-right: 1rem;
+  }
+
+  .cs-meta-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .cs-meta-value {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .cs-intro {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* CONTENT SECTIONS */
+  .cs-section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .cs-full-image {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .cs-full-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cs-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .cs-two-col .cs-img-cell {
+    background: var(--surface2);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .cs-two-col .cs-img-cell img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .cs-caption {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-top: 1.25rem;
+  }
+
+  .cs-text-block {
+    max-width: 640px;
+  }
+
+  .cs-text-block p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .cs-section-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .cs-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .cs-nav-link {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .cs-nav-link:hover { color: var(--text-primary); }
+
+  .cs-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cs-placeholder span {
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 900px) {
+    .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+    .cs-hero-image { min-height: 55vw; }
+    .cs-hero-info { border-left: none; border-top: 1px solid var(--border); padding: 3rem 1.5rem; }
+    .cs-back { left: 1.5rem; }
+    .cs-two-col { grid-template-columns: 1fr; }
+    .cs-section { padding: 3rem 1.5rem; }
+    .cs-nav { padding: 2rem 1.5rem; }
+    .cs-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  }
+  
+
+  /* ── CASE STUDY OVERRIDES ── */
+  .cs-header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8rem 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cs-discipline {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-title {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
+    max-width: 700px;
+  }
+
+  .cs-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  /* ── IMAGE FLOW ── */
+  .cs-images {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* 16:9 full-width image or placeholder */
+  .cs-img-full {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: block;
+  }
+  .cs-img-full img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  /* 2-col row */
+  .cs-img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+  .cs-img-half {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .cs-img-half img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  /* Placeholder */
+  .cs-ph {
+    width: 100%; height: 100%;
+    min-height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    }
+  .cs-ph span {
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* ── BACK / NEXT NAV ── */
+  .cs-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+    margin-bottom: 2rem;
+  }
+  .cs-back:hover { color: var(--text-primary); }
+
+  .cs-foot-nav {
+    margin-top: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cs-foot-link {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; display: inline-flex; align-items: center;
+    gap: 0.4rem; transition: color 0.2s;
+  }
+  .cs-foot-link:hover { color: var(--text-primary); }
+
+  @media (max-width: 900px) {
+    .cs-header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8rem 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+    .cs-images {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+    .cs-img-pair { grid-template-columns: 1fr; }
+    .cs-foot-nav {
+    margin-top: 0; padding: 2rem 1.5rem; }
+  }
+  
+
+  /* ── CASE STUDY ── */
+  .cs-header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8rem 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cs-discipline {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-title {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
+    max-width: 700px;
+  }
+
+  .cs-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .cs-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s; margin-bottom: 2rem;
+  }
+  .cs-back:hover { color: var(--text-primary); }
+
+  /* ── IMAGE FLOW ── */
+  .cs-images {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .cs-img-full {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .cs-img-full img,
+  .cs-img-full video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .cs-img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .cs-img-half {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .cs-img-half img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .cs-ph {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cs-ph span {
+    font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* ── BODY COPY BLOCK ── */
+  .cs-copy {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 3rem 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    border-top: 1px solid var(--border);
+  }
+
+  .cs-copy p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .cs-copy-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  /* ── FOOTER NAV ── */
+  .cs-foot-nav {
+    margin-top: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .cs-foot-link {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; display: inline-flex;
+    align-items: center; gap: 0.4rem; transition: color 0.2s;
+  }
+  .cs-foot-link:hover { color: var(--text-primary); }
+
+  @media (max-width: 900px) {
+    .cs-header { padding: 6rem 1.5rem 3rem; }
+    .cs-images { padding: 2rem 1.5rem; gap: 2rem; }
+    .cs-img-pair { grid-template-columns: 1fr; gap: 2rem; }
+    .cs-copy {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 3rem 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    border-top: 1px solid var(--border);
+  }
+    .cs-foot-nav {
+    margin-top: 0; padding: 2rem 1.5rem; }
+  }
+  
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-brand">Chaos-Lab:</span> Anything can happen.</div>
+    <ul class="nav-links">
+      <li><a href="#work" data-section="work">Work</a></li>
+      <li><a href="#about" data-section="about">About</a></li>
+      <li><a href="#projects" data-section="projects">Projects</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/cdn-cgi/l/email-protection#186a717b70587b7079776b3574797a367b77366d73" class="nav-email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;display:block;">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" onclick="closeMenu()">Work <span>↗</span></a>
+  <a href="#about" onclick="closeMenu()">About <span>↗</span></a>
+  <a href="#projects" onclick="closeMenu()">Projects <span>↗</span></a>
+  <a href="#contact" onclick="closeMenu()">Contact <span>↗</span></a>
+  <div class="mobile-menu-footer">Chaos-Lab — Nottingham, UK</div>
+</div>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      Graphic &amp; Digital Designer
+    </div>
+    <div class="hero-location">Nottingham, United Kingdom</div>
+  </div>
+
+  <h1 class="hero-heading">
+    Rich Palmer<br>
+    Graphic Designer <span style="color:var(--accent)">+</span><br>
+    Digital Designer
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-sub">Highly experienced designer. Enthusiastic about all areas of design and early adopter of Ai within design. Embracing new technology. Trusting traditional principles.</p>
+  </div>
+</div>
+
+<section id="work">
+  <div class="section-header">
+    <span class="section-title">Work</span>
+    <span class="section-index">01 — Selected work</span>
+  </div>
+
+  <div class="work-grid">
+
+    <!-- Row 1: 2 cards -->
+    <div class="work-card">
+      <a href="1.html" class="work-thumb small">
+        <img src="images/1-Speedo1-Thumb.jpg" alt="Speedo CLP">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">01</span>
+        <h3 class="work-title">Speedo Website Development</h3>
+        <p class="work-desc">A self-initiated design exploration showing what moving to Shopify could genuinely mean for Speedo's digital presence.</p>
+        <a class="work-link" href="1.html">View ↗</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <a href="2.html" class="work-thumb small">
+        <img src="images/2-philips-thumb.jpg" alt="Philips">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">02</span>
+        <h3 class="work-title">Philips Hue Brand Campaign</h3>
+        <p class="work-desc">Launching Philips Hue not as a product, but as an experience — connecting with everyone from young families to busy professionals across print, digital and large-scale retail.</p>
+        <a class="work-link" href="2.html">View ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 2: 2 cards -->
+    <div class="work-card">
+      <a href="3.html" class="work-thumb small">
+        <img src="images/3-Berg-Thumb.jpg" alt="Berghaus">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">03</span>
+        <h3 class="work-title">Berghaus Website Updates</h3>
+        <p class="work-desc">A creative experiment using AI-generated imagery and video as a genuine design tool — reimagining Berghaus's digital presence with ambition to match the brand.</p>
+        <a class="work-link" href="3.html">View ↗</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <a href="4.html" class="work-thumb small">
+        <img src="images/4-endura-thumb.jpg" alt="Endura">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">04</span>
+        <h3 class="work-title">Endura Replatforming</h3>
+        <p class="work-desc">Using a platform migration as a creative opportunity — reimagining Endura's e-commerce experience from the brand outward, built for riders not just browsers.</p>
+        <a class="work-link" href="4.html">View ↗</a>
+      </div>
+    </div>
+
+    <!-- Row 3: 2 cards -->
+    <div class="work-card">
+      <a href="5.html" class="work-thumb small">
+        <img src="images/5-gemini-thumb.jpg" alt="Gemini">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">05</span>
+        <h3 class="work-title">Gemini Rail Group VI</h3>
+        <p class="work-desc">A complete brand identity built from scratch for a newly merged business — designed to signal confident forward momentum from day one.</p>
+        <a class="work-link" href="5.html">View ↗</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <a href="6.html" class="work-thumb small">
+        <img src="images/6-NoThumb.jpg" alt="Northwood">
+      </a>
+      <div class="work-meta">
+        <span class="work-num">06</span>
+        <h3 class="work-title">Northwood Property VI Refresh</h3>
+        <p class="work-desc">Modernising an established property brand without starting from scratch — evolving the identity into something more contemporary and capable across every channel.</p>
+        <a class="work-link" href="6.html">View ↗</a>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-header">
+    <span class="section-title">About</span>
+    <span class="section-index">02 — Profile</span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm Rich Palmer, a graphic and digital designer based in Nottingham. Working in the creative industry for over 35 years. I have experience working for a huge variety of clients across many business sectors including sport, fashion, retail, hospitality, security, construction, and more.</p>
+      <p>My approach has remained the same throughout my design career: remain true to the principles and values of 'good' design but embrace new technology and bend the rules, test the principles &amp; create some chaos.</p>
+      <p>Currently working in digital design, bringing clarity and purpose to brand systems &amp; defining brand VI and toolkits. Specifically working within the sport, outdoor and fashion markets.</p>
+
+    </div>
+
+    <div>
+      <div class="disciplines">
+        <div class="discipline-row"><span class="discipline-name">Brand &amp; Identity</span></div>
+        <div class="discipline-row"><span class="discipline-name">Print &amp; Editorial</span></div>
+        <div class="discipline-row"><span class="discipline-name">Multi-Channel Digital</span></div>
+        <div class="discipline-row"><span class="discipline-name">UX</span></div>
+        <div class="discipline-row"><span class="discipline-name">Advertising</span></div>
+        <div class="discipline-row"><span class="discipline-name">Web</span></div>
+        <div class="discipline-row"><span class="discipline-name">Generative Ai</span></div>
+        <div class="discipline-row"><span class="discipline-name">Ai Driven Workflows</span></div>
+        <div class="discipline-row" style="margin-top:2rem;"><span class="discipline-name">Adobe CC</span></div>
+        <div class="discipline-row"><span class="discipline-name">Figma</span></div>
+        <div class="discipline-row"><span class="discipline-name">Ai</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header">
+    <span class="section-title">Projects</span>
+    <span class="section-index">03 — Capabilities</span>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <a href="project-1.html"><div class="service-img-placeholder"></div></a>
+      <span class="service-num">01</span>
+      <h3 class="service-title">Project 1</h3>
+      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <a class="work-link" href="project-1.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
+    </div>
+
+    <div class="service-card">
+      <a href="project-2.html"><div class="service-img-placeholder"></div></a>
+      <span class="service-num">02</span>
+      <h3 class="service-title">Project 2</h3>
+      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <a class="work-link" href="project-2.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
+    </div>
+
+    <div class="service-card">
+      <a href="project-3.html"><div class="service-img-placeholder"></div></a>
+      <span class="service-num">03</span>
+      <h3 class="service-title">Project 3</h3>
+      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <a class="work-link" href="project-3.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
+    </div>
+
+    <div class="service-card">
+      <a href="project-4.html"><div class="service-img-placeholder"></div></a>
+      <span class="service-num">04</span>
+      <h3 class="service-title">Project 4</h3>
+      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <a class="work-link" href="project-4.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header">
+    <span class="section-title">Contact</span>
+    <span class="section-index">04 — Get in touch</span>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-heading">Let's Work<br>Together</h2>
+      <p class="contact-sub">If you would like to discuss a project, a full time position or just want to say hi, get in touch.</p>
+      <a class="contact-envelope" href="/cdn-cgi/l/email-protection#9be9f2f8f3ebfaf7f6fee9acaadbfcf6faf2f7b5f8f4f6">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </a>
+    </div>
+
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Chaos-Lab / Rich Palmer. All rights reserved.</span>
+  <span class="footer-coords">Nottingham, United Kingdom</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+   

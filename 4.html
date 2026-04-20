@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Endura CLP / PLP Development — Chaos-Lab / Rich Palmer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0f0f0f;
+    --surface: #151515;
+    --surface2: #1a1a1a;
+    --border: rgba(255,255,255,0.07);
+    --border-mid: rgba(255,255,255,0.13);
+    --text-primary: #f2f2f2;
+    --text-secondary: #a0a0a0;
+    --text-muted: #464646;
+    --accent: #E8541A;
+    --font: 'Inter', 'Helvetica Neue', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.25;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: rgba(15,15,15,0.94);
+    backdrop-filter: blur(16px);
+    padding: 0 3rem;
+  }
+
+  .nav-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.4rem 0;
+  }
+
+  .logo {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .logo-brand { color: var(--accent); }
+
+  .nav-email {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-email:hover { opacity: 0.75; }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text-secondary);
+    transition: all 0.25s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--black);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2rem;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--text-secondary); }
+  .mobile-menu-footer {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2rem;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* CASE STUDY HEADER */
+  .cs-header {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 8rem 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cs-discipline {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-title {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.05;
+    margin-bottom: 1.75rem;
+    max-width: 700px;
+  }
+
+  .cs-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .cs-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 12px; color: var(--text-muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s; margin-bottom: 2rem;
+  }
+  .cs-back:hover { color: var(--text-primary); }
+
+  /* IMAGE FLOW */
+  .cs-images {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .cs-img-full {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: block;
+  }
+  .cs-img-full img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .cs-img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .cs-img-half {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .cs-img-half img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  /* COPY BLOCK */
+  .cs-copy-block {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .cs-copy-label {
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-copy-block p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 640px;
+  }
+
+  /* VIDEO */
+  .cs-video-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+  }
+  .cs-video-wrap video {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+
+  /* FOOTER NAV */
+  .cs-foot-nav {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .cs-foot-link {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; display: inline-flex;
+    align-items: center; gap: 0.4rem; transition: color 0.2s;
+  }
+  .cs-foot-link:hover { color: var(--text-primary); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .footer-coords {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cs-title { animation: fadeUp 0.7s ease both 0.15s; }
+  .cs-sub { animation: fadeUp 0.7s ease both 0.3s; }
+
+  /* TABLET */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-email { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .cs-header { padding: 6rem 1.5rem 3rem; }
+    .cs-images { padding: 2rem 1.5rem; gap: 2rem; }
+    .cs-img-pair { grid-template-columns: 1fr; gap: 2rem; }
+    .cs-copy-block { padding: 3rem 1.5rem; }
+    .cs-foot-nav { padding: 2rem 1.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .footer-coords { display: none; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .cs-header { padding: 5rem 1.25rem 2.5rem; }
+    .cs-images { padding: 1.5rem 1.25rem; gap: 1.5rem; }
+    .cs-img-pair { gap: 1.5rem; }
+    .cs-copy-block { padding: 2.5rem 1.25rem; }
+    .cs-foot-nav { padding: 1.75rem 1.25rem; }
+    footer { padding: 1.25rem; }
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-brand">Chaos-Lab:</span> Anything can happen.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="/cdn-cgi/l/email-protection#69010c050506290a0108061a4405080b470a0604" class="nav-email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;display:block;">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="2,4 12,13 22,4"/>
+      </svg>
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#work" onclick="closeMenu()">Work <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
+  <a href="index.html#about" onclick="closeMenu()">About <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
+  <a href="index.html#projects" onclick="closeMenu()">Projects <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
+  <a href="index.html#contact" onclick="closeMenu()">Contact <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
+  <div class="mobile-menu-footer">Chaos-Lab — Nottingham, UK</div>
+</div>
+
+<!-- HEADER -->
+<div class="cs-header">
+  <a href="index.html" class="cs-back">
+    <svg style="width:10px;height:10px;transform:rotate(225deg)" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg>
+    Back Home
+  </a>
+  <div class="cs-discipline">Endura &nbsp;/&nbsp; CLP / PLP Development</div>
+  <h1 class="cs-title">Endura CLP / PLP<br>Development</h1>
+  <p class="cs-sub">Endura is a Scottish cycling brand with serious performance credentials and a distinct personality — gear built for trails, tarmac and everything in between. With a loyal following and a product range spanning MTB to road and gravel, the brand deserved a digital experience that matched the ambition of what they make. This was a self-initiated exploration of what that could look like.</p>
+</div>
+
+<!-- IMAGE FLOW -->
+<div class="cs-images">
+
+  <!-- 1. P1 — full width -->
+  <div class="cs-img-full">
+    <img src="images/E1.jpg" alt="Philips Hue packaging suite" loading="lazy">
+  </div>
+
+  <!-- 2. P2 — full width -->
+  <div class="cs-img-full">
+    <img src="images/E2.jpg" alt="Philips Hue digital campaign" loading="lazy">
+  </div>
+
+</div>
+
+<!-- COPY BLOCK 1 — The Brief -->
+<div class="cs-copy-block">
+  <span class="cs-copy-label">The Brief</span>
+  <p>Endura's existing e-commerce experience wasn't keeping pace with either the quality of the product or the expectations of their audience. With a platform migration on the horizon, I saw an opportunity to get ahead of the conversation — using the move to Shopify as a creative starting point to reimagine how the brand's Category Landing Pages and Product Listing Pages could work harder for the customer and the business alike.</p>
+</div>
+
+<div class="cs-images" style="padding-top:0;">
+
+  <!-- 3. P3 — full width -->
+  <div class="cs-img-full">
+    <img src="images/E3.jpg" alt="Philips Hue bus stop OOH" loading="lazy">
+  </div>
+
+  <!-- 4 + 5. P4 + P5 — side by side -->
+  <div class="cs-img-pair">
+    <div class="cs-img-half">
+      <img src="images/E4.jpg" alt="Philips Hue street poster campaign" loading="lazy">
+    </div>
+    <div class="cs-img-half">
+      <img src="images/E5.jpg" alt="Philips Hue magazine spread" loading="lazy">
+    </div>
+  </div>
+
+</div>
+
+<!-- COPY BLOCK 2 — The Idea -->
+<div class="cs-copy-block">
+  <span class="cs-copy-label">The Idea</span>
+  <p>Rather than treating the replatform as a purely technical exercise, the work asked a different question: what could Endura's digital presence look like if it were built from the brand outward? The page concepts explored a more considered, activity-led structure — making it easier for riders to find what they need while giving the brand room to express its character. AI-generated imagery was introduced alongside existing brand assets to suggest how new creative tools could help Endura stay visually sharp and ahead of the curve.</p>
+</div>
+
+<div class="cs-images" style="padding-top:0;">
+
+  <!-- 6 + 7. E6 + E7 — side by side -->
+  <div class="cs-img-pair">
+    <div class="cs-img-half">
+      <img src="images/E6.jpg" alt="Endura CLP PLP" loading="lazy">
+    </div>
+    <div class="cs-img-half">
+      <img src="images/E7.jpg" alt="Endura CLP PLP" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Video — full width, inside grid -->
+  <div class="cs-img-full">
+    <video src="images/End-HPH.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+  </div>
+
+</div>
+
+<!-- COPY BLOCK 3 — My Role -->
+<div class="cs-copy-block">
+  <span class="cs-copy-label">My Role</span>
+  <p>This was a self-initiated project, conceived and executed independently to provide a clear creative direction ahead of the live replatforming work. I developed the full suite of CLP and PLP concepts — building a vision for how Shopify could unlock a faster, more flexible and more engaging digital experience for Endura's riders, and presenting the teams with a compelling case for what the migration could genuinely achieve.</p>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="cs-foot-nav">
+  <a href="index.html" class="cs-foot-link">
+    <svg style="width:10px;height:10px;transform:rotate(225deg)" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg>
+    Back Home
+  </a>
+  <a href="5.html" class="cs-foot-link">
+    Next project <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="nav-inner">
+    <span class="footer-copy">© 2026 Chaos-Lab / Rich Palmer. All rights reserved.</span>
+    <span class="footer-coords">Nottingham, United Kingdom</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMenu() {
+ 
