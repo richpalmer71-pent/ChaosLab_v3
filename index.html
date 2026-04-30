@@ -461,6 +461,19 @@
     background: var(--surface2);
     border: 1px solid var(--border);
     margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+
+  .service-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .service-card:hover .service-img-placeholder img {
+    transform: scale(1.03);
   }
 
   .service-num {
@@ -1395,11 +1408,11 @@
   <div class="services-grid">
 
     <div class="service-card">
-      <a href="project-1.html"><div class="service-img-placeholder"></div></a>
+      <a href="P1.html"><div class="service-img-placeholder"><img src="images/SV-Thumb.jpg" alt="Speedo Community AI Movie Project" loading="lazy"></div></a>
       <span class="service-num">01</span>
-      <h3 class="service-title">Project 1</h3>
+      <h3 class="service-title">Speedo Community AI Movie Project</h3>
       <p class="service-desc">A personal or experimental project — design, code or concept.</p>
-      <a class="work-link" href="project-1.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
+      <a class="work-link" href="P1.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
     </div>
 
     <div class="service-card">
