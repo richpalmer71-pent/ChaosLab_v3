@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chaos-Lab — Rich Palmer, Designer</title>
-  <meta name="description" content="Rich Palmer — Graphic & Digital Designer based in Nottingham. 35+ years experience across brand, print, digital, UX and Ai-driven design.">
+  <title>Chaos-Lab – Rich Palmer, Designer</title>
+  <meta name="description" content="Rich Palmer – Graphic & Digital Designer based in Nottingham. 35+ years experience across brand, print, digital, UX and Ai-driven design.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -22,7 +22,7 @@
     --text-primary: #f2f2f2;
     --text-secondary: #a0a0a0;
     --text-muted: #464646;
-    --accent: #E8541A;
+    --accent: #888888;
     --font: 'Inter', 'Helvetica Neue', sans-serif;
   }
 
@@ -115,14 +115,16 @@
 
   /* HERO */
   .hero {
-    min-height: 65vh;
+    min-height: 55vh;
     display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 3rem 4rem;
+    padding: 0 max(3rem, calc((100% - 940px) / 2)) 3.5rem;
     border-bottom: 1px solid var(--border);
   }
 
   .hero-top {
-    position: absolute; top: 5.5rem; left: 3rem; right: 3rem;
+    position: absolute; top: 5.5rem; 
+    left: max(3rem, calc((100vw - 940px) / 2));
+    right: max(3rem, calc((100vw - 940px) / 2));
     display: flex; justify-content: space-between; align-items: flex-start;
   }
 
@@ -145,13 +147,13 @@
   }
 
   .hero-heading {
-    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-size: clamp(1.9rem, 3.8vw, 3.5rem);
     font-weight: 600;
     line-height: 1.08;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    max-width: 860px;
-    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
   }
 
   .hero-heading .dim { color: var(--text-muted); font-weight: 400; }
@@ -162,7 +164,7 @@
   }
 
   .hero-sub {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;
     color: var(--text-secondary);
     max-width: 440px;
@@ -189,7 +191,7 @@
 
   /* SECTIONS */
   section {
-    padding: 5rem 3rem;
+    padding: 4rem max(3rem, calc((100% - 940px) / 2));
     border-bottom: 1px solid var(--border);
     scroll-margin-top: 5rem;
   }
@@ -219,8 +221,7 @@
   .work-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
+    gap: 0;
   }
 
   .work-card {
@@ -229,6 +230,7 @@
     cursor: pointer;
     transition: background 0.25s;
     display: flex; flex-direction: column; gap: 1.25rem;
+    border-bottom: 1px solid var(--border);
   }
 
   .work-card:hover { background: var(--surface); }
@@ -289,7 +291,7 @@
     font-size: 15px;
     font-weight: 400;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.25;
     margin-bottom: 1.25rem;
   }
 
@@ -397,14 +399,14 @@
   .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
+    gap: 0;
     margin-bottom: 2rem;
   }
 
   .stat-cell {
     background: var(--black);
     padding: 1.75rem;
+    border-bottom: 1px solid var(--border);
   }
 
   .stat-num {
@@ -446,13 +448,13 @@
   .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
+    gap: 0;
   }
 
   .service-card {
     background: var(--black);
     padding: 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
   }
 
   .service-img-placeholder {
@@ -567,7 +569,7 @@
 
   /* FOOTER */
   footer {
-    padding: 2rem 3rem;
+    padding: 2rem max(3rem, calc((100% - 940px) / 2));
     display: flex; justify-content: space-between; align-items: center;
   }
 
@@ -657,8 +659,8 @@
     .nav-cta { display: none; }
     .nav-hamburger { display: flex; }
 
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 0 1.5rem 4rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 3.5rem; }
     .hero-top { left: 1.5rem; right: 1.5rem; top: 5rem; }
 
     .work-grid { grid-template-columns: 1fr 1fr; }
@@ -680,7 +682,7 @@
 
     .hero { padding: 0 1.25rem 3rem; min-height: 100svh; }
     .hero-top { left: 1.25rem; right: 1.25rem; top: 4.5rem; flex-direction: column; gap: 0.4rem; }
-    .hero-heading { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 2rem; }
+    .hero-heading { font-size: clamp(1.6rem, 8vw, 2.2rem); margin-bottom: 1.75rem; }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     .hero-actions { align-items: flex-start; flex-direction: row; gap: 1.5rem; }
 
@@ -1235,7 +1237,7 @@
   <a href="#about" onclick="closeMenu()">About <span>↗</span></a>
   <a href="#projects" onclick="closeMenu()">Projects <span>↗</span></a>
   <a href="#contact" onclick="closeMenu()">Contact <span>↗</span></a>
-  <div class="mobile-menu-footer">Chaos-Lab — Nottingham, UK</div>
+  <div class="mobile-menu-footer">Chaos-Lab – Nottingham, UK</div>
 </div>
 
 <div class="hero">
@@ -1254,14 +1256,14 @@
   </h1>
 
   <div class="hero-bottom">
-    <p class="hero-sub">Highly experienced designer. Enthusiastic about all areas of design and early adopter of Ai within design. Embracing new technology. Trusting traditional principles.</p>
+    <p class="hero-sub">Experienced designer. Passionate about creativity, obsessed with the details. Embracing new technology, trusting traditional principles.</p>
   </div>
 </div>
 
 <section id="work">
   <div class="section-header">
     <span class="section-title">Work</span>
-    <span class="section-index">01 — Selected work</span>
+    <span class="section-index">01 – Selected work</span>
   </div>
 
   <div class="work-grid">
@@ -1286,7 +1288,7 @@
       <div class="work-meta">
         <span class="work-num">02</span>
         <h3 class="work-title">Philips Hue Brand Campaign</h3>
-        <p class="work-desc">Launching Philips Hue not as a product, but as an experience — connecting with everyone from young families to busy professionals across print, digital and large-scale retail.</p>
+        <p class="work-desc">Launching Philips Hue not as a product, but as an experience – connecting with everyone from young families to busy professionals across print, digital and large-scale retail.</p>
         <a class="work-link" href="2.html">View ↗</a>
       </div>
     </div>
@@ -1299,7 +1301,7 @@
       <div class="work-meta">
         <span class="work-num">03</span>
         <h3 class="work-title">Berghaus CLP Updates With Ai Image Use</h3>
-        <p class="work-desc">A creative experiment using Ai-generated imagery and video as a genuine design tool — reimagining Berghaus's digital presence with ambition to match the brand.</p>
+        <p class="work-desc">A creative experiment using Ai-generated imagery and video as a genuine design tool – reimagining Berghaus's digital presence with ambition to match the brand.</p>
         <a class="work-link" href="3.html">View ↗</a>
       </div>
     </div>
@@ -1311,7 +1313,7 @@
       <div class="work-meta">
         <span class="work-num">04</span>
         <h3 class="work-title">Endura CLP / PLP Development</h3>
-        <p class="work-desc">Using a platform migration as a creative opportunity — reimagining Endura's e-commerce experience from the brand outward, built for riders not just browsers.</p>
+        <p class="work-desc">Using a platform migration as a creative opportunity – reimagining Endura's e-commerce experience from the brand outward, built for riders not just browsers.</p>
         <a class="work-link" href="4.html">View ↗</a>
       </div>
     </div>
@@ -1324,7 +1326,7 @@
       <div class="work-meta">
         <span class="work-num">05</span>
         <h3 class="work-title">Gemini Rail Group VI</h3>
-        <p class="work-desc">A complete brand identity built from scratch for a newly merged business — designed to signal confident forward momentum from day one.</p>
+        <p class="work-desc">A complete brand identity built from scratch for a newly merged business – designed to signal confident forward momentum from day one.</p>
         <a class="work-link" href="5.html">View ↗</a>
       </div>
     </div>
@@ -1336,7 +1338,7 @@
       <div class="work-meta">
         <span class="work-num">06</span>
         <h3 class="work-title">Northwood Property VI Refresh</h3>
-        <p class="work-desc">Modernising an established property brand without starting from scratch — evolving the identity into something more contemporary and capable across every channel.</p>
+        <p class="work-desc">Modernising an established property brand without starting from scratch – evolving the identity into something more contemporary and capable across every channel.</p>
         <a class="work-link" href="6.html">View ↗</a>
       </div>
     </div>
@@ -1349,7 +1351,7 @@
       <div class="work-meta">
         <span class="work-num">07</span>
         <h3 class="work-title">Speedo Ai Image Generation Testing</h3>
-        <p class="work-desc">Exploring how Ai-driven image generation can produce high-impact campaign visuals that genuinely feel like the Speedo brand — dynamic, precise and performance-led.</p>
+        <p class="work-desc">Exploring how Ai-driven image generation can produce high-impact campaign visuals that genuinely feel like the Speedo brand – dynamic, precise and performance-led.</p>
         <a class="work-link" href="7.html">View ↗</a>
       </div>
     </div>
@@ -1361,7 +1363,7 @@
       <div class="work-meta">
         <span class="work-num">08</span>
         <h3 class="work-title">Multi-brand CRM Design and Build</h3>
-        <p class="work-desc">Designing and building a flexible CRM system capable of working across multiple brands — balancing consistency with the individual needs of each.</p>
+        <p class="work-desc">Designing and building a flexible CRM system capable of working across multiple brands – balancing consistency with the individual needs of each.</p>
         <a class="work-link" href="8.html">View ↗</a>
       </div>
     </div>
@@ -1372,7 +1374,7 @@
 <section id="about">
   <div class="section-header">
     <span class="section-title">About</span>
-    <span class="section-index">02 — Profile</span>
+    <span class="section-index">02 – Profile</span>
   </div>
 
   <div class="about-grid">
@@ -1402,7 +1404,7 @@
 <section id="projects">
   <div class="section-header">
     <span class="section-title">Projects</span>
-    <span class="section-index">03 — Capabilities</span>
+    <span class="section-index">03 – Capabilities</span>
   </div>
 
   <div class="services-grid">
@@ -1411,7 +1413,7 @@
       <a href="P1.html"><div class="service-img-placeholder"><img src="images/SV-Thumb.jpg" alt="Speedo Community Ai Movie Project" loading="lazy"></div></a>
       <span class="service-num">01</span>
       <h3 class="service-title">Speedo Community Ai Movie Project</h3>
-      <p class="service-desc">A self-initiated short film made entirely with Ai — exploring loneliness, swimming and community.</p>
+      <p class="service-desc">A self-initiated short film made entirely with Ai – exploring loneliness, swimming and community.</p>
       <a class="work-link" href="P1.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
     </div>
 
@@ -1419,7 +1421,7 @@
       <a href="P2.html"><div class="service-img-placeholder"><img src="images/Ai-Thumb.jpg" alt="Ai Produced Productivity Tools" loading="lazy"></div></a>
       <span class="service-num">02</span>
       <h3 class="service-title">Ai Produced Productivity Tools</h3>
-      <p class="service-desc">A growing toolkit of small, practical tools built using Ai — taking the friction out of everyday design work.</p>
+      <p class="service-desc">A growing toolkit of small, practical tools built using Ai – taking the friction out of everyday design work.</p>
       <a class="work-link" href="P2.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
     </div>
 
@@ -1427,7 +1429,7 @@
       <a href="project-3.html"><div class="service-img-placeholder" style="display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);">Coming Soon</span></div></a>
       <span class="service-num">03</span>
       <h3 class="service-title">Project 3</h3>
-      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <p class="service-desc">A personal or experimental project – design, code or concept.</p>
       <a class="work-link" href="project-3.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
     </div>
 
@@ -1435,7 +1437,7 @@
       <a href="project-4.html"><div class="service-img-placeholder" style="display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);">Coming Soon</span></div></a>
       <span class="service-num">04</span>
       <h3 class="service-title">Project 4</h3>
-      <p class="service-desc">A personal or experimental project — design, code or concept.</p>
+      <p class="service-desc">A personal or experimental project – design, code or concept.</p>
       <a class="work-link" href="project-4.html" style="margin-top:1rem;display:inline-flex;align-items:center;gap:.3rem;">View ↗</a>
     </div>
 
@@ -1445,7 +1447,7 @@
 <section id="contact">
   <div class="section-header">
     <span class="section-title">Contact</span>
-    <span class="section-index">04 — Get in touch</span>
+    <span class="section-index">04 – Get in touch</span>
   </div>
 
   <div class="contact-grid">
