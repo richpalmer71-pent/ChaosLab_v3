@@ -39,7 +39,7 @@
 
   /* MAX WIDTH CONTAINER */
   .site-wrap {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     position: relative;
   }
@@ -54,7 +54,7 @@
   }
 
   .nav-inner {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -327,7 +327,7 @@
   .cs-section {
     padding: 5rem 0;
     border-bottom: 1px solid var(--border);
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -395,7 +395,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 3rem;
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -440,7 +440,7 @@
 
   /* ── CASE STUDY OVERRIDES ── */
   .cs-header {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 8rem 3rem 4rem;
     border-bottom: 1px solid var(--border);
@@ -456,25 +456,25 @@
   }
 
   .cs-title {
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-size: clamp(1.9rem, 3.8vw, 3.5rem);
     font-weight: 600;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    line-height: 1.05;
+    line-height: 1.08;
     margin-bottom: 1.75rem;
     max-width: 700px;
   }
 
   .cs-sub {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.25;
     max-width: 520px;
   }
 
   /* ── IMAGE FLOW ── */
   .cs-images {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 3rem 0;
     padding-bottom: 0;
@@ -530,7 +530,7 @@
 
   .cs-foot-nav {
     margin-top: 0;
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
@@ -546,13 +546,13 @@
 
   @media (max-width: 900px) {
     .cs-header {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 8rem 3rem 4rem;
     border-bottom: 1px solid var(--border);
   }
     .cs-images {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 3rem 0;
     padding-bottom: 0;
@@ -568,7 +568,7 @@
 
   /* ── CASE STUDY ── */
   .cs-header {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 8rem 3rem 4rem;
     border-bottom: 1px solid var(--border);
@@ -584,19 +584,19 @@
   }
 
   .cs-title {
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-size: clamp(1.9rem, 3.8vw, 3.5rem);
     font-weight: 600;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    line-height: 1.05;
+    line-height: 1.08;
     margin-bottom: 1.75rem;
     max-width: 700px;
   }
 
   .cs-sub {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.25;
     max-width: 520px;
   }
 
@@ -610,7 +610,7 @@
 
   /* ── IMAGE FLOW ── */
   .cs-images {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 3rem 0;
     display: flex;
@@ -652,7 +652,7 @@
 
   /* ── BODY COPY BLOCK ── */
   .cs-copy {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 3rem 0;
     display: grid;
@@ -681,7 +681,7 @@
   /* ── FOOTER NAV ── */
   .cs-foot-nav {
     margin-top: 0;
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
@@ -701,7 +701,7 @@
     .cs-images { padding: 2rem 1.5rem; gap: 2rem; }
     .cs-img-pair { grid-template-columns: 1fr; gap: 2rem; }
     .cs-copy {
-    max-width: 940px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 3rem 0;
     display: grid;
@@ -851,12 +851,25 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (!hamburger || !mobileMenu) return;
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
   });
-  function closeMenu(
+  function closeMenu() {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger) hamburger.classList.remove('open');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+
+</body>
+</html>
