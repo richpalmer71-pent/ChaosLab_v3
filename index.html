@@ -115,10 +115,15 @@
 
   /* HERO */
   .hero {
-    min-height: 55vh;
+    min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 max(3rem, calc((100% - 940px) / 2)) 3.5rem;
     border-bottom: 1px solid var(--border);
+    background:
+      linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
+      linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%),
+      url('images/hero-bg.jpg') center center / cover no-repeat;
+    background-color: var(--black);
   }
 
   .hero-top {
@@ -1241,14 +1246,6 @@
 </div>
 
 <div class="hero">
-  <div class="hero-top">
-    <div class="hero-status">
-      <span class="status-dot"></span>
-      Graphic &amp; Digital Designer
-    </div>
-    <div class="hero-location">Nottingham, United Kingdom</div>
-  </div>
-
   <h1 class="hero-heading">
     Rich Palmer<br>
     Graphic Designer <span style="color:var(--accent)">+</span><br>
