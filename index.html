@@ -114,17 +114,51 @@
   .nav-cta:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.25); }
 
   /* HERO */
+  /* Scroll zone: JS expands this to create the pinned-scroll distance.
+     Defaults to one viewport so no-JS / reduced-motion shows a static hero. */
+  .hero-scroll {
+    position: relative;
+    height: 100vh;
+  }
+
   .hero {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 max(3rem, calc((100% - 940px) / 2)) 7rem;
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
     background:
       linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
       linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%),
       url('images/hero-bg.jpg') center center / cover no-repeat;
     background-color: var(--black);
   }
+
+  /* Second image layer, cross-faded in on scroll */
+  .hero-bg2 {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
+      linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%),
+      url('images/hero-bg2.jpg') center center / cover no-repeat;
+    background-color: var(--black);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    will-change: opacity;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero-name { display: block; will-change: transform; }
+  .hero-rest { display: block; will-change: opacity; }
 
   .hero-top {
     position: absolute; top: 5.5rem; 
@@ -1245,15 +1279,19 @@
   <div class="mobile-menu-footer">Chaos-Lab – Nottingham, UK</div>
 </div>
 
-<div class="hero">
-  <h1 class="hero-heading">
-    Rich Palmer<br>
-    Graphic Designer <span style="color:var(--accent)">+</span><br>
-    Digital Designer
-  </h1>
+<div class="hero-scroll" id="heroScroll">
+  <div class="hero">
+    <div class="hero-bg2"></div>
+    <div class="hero-content">
+      <h1 class="hero-heading">
+        <span class="hero-name">Rich Palmer</span>
+        <span class="hero-rest">Graphic Designer <span style="color:var(--accent)">+</span><br>Digital Designer</span>
+      </h1>
 
-  <div class="hero-bottom">
-    <p class="hero-sub">Experienced designer. Passionate about creativity, obsessed with the details. Embracing new technology, trusting traditional principles.</p>
+      <div class="hero-bottom">
+        <p class="hero-sub">Experienced designer. Passionate about creativity, obsessed with the details. Embracing new technology, trusting traditional principles.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1486,6 +1524,62 @@
     if (mobileMenu) mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  /* Scroll-driven hero */
+  document.addEventListener('DOMContentLoaded', function () {
+    var scrollZone = document.getElementById('heroScroll');
+    if (!scrollZone) return;
+    var name = scrollZone.querySelector('.hero-name');
+    var rest = scrollZone.querySelector('.hero-rest');
+    var sub  = scrollZone.querySelector('.hero-sub');
+    var bg2  = scrollZone.querySelector('.hero-bg2');
+    if (!name || !rest || !bg2) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return; // leave the static single-viewport hero in place
+
+    // Distance the "Rich Palmer" line has to travel to reach mid-screen.
+    var startTop = 0, targetY = 0;
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+    function measure() {
+      name.style.transform = 'none';
+      startTop = name.getBoundingClientRect().top;   // constant while the hero is pinned
+      targetY = window.innerHeight * 0.5;            // halfway down the screen
+      // Expand the scroll zone to two viewports -> one full viewport of pinned scroll.
+      scrollZone.style.height = (window.innerHeight * 2) + 'px';
+    }
+
+    function update() {
+      var dist = scrollZone.offsetHeight - window.innerHeight; // pinned-scroll distance
+      var p = clamp(window.scrollY / dist, 0, 1);
+
+      // Phase 1: "Rich Palmer" rises to mid-screen.
+      name.style.transform = 'translateY(' + (p * (targetY - startTop)) + 'px)';
+
+      // Rest of the copy fades away in place (done by ~45%).
+      var fade = clamp(1 - p / 0.45, 0, 1);
+      rest.style.opacity = fade;
+      if (sub) sub.style.opacity = fade;
+
+      // Background cross-fades to the second image (done by ~80%).
+      bg2.style.opacity = clamp(p / 0.8, 0, 1);
+      // Phase 2 (p -> 1): the sticky pin releases and the hero scrolls away,
+      // revealing the page beneath — handled naturally by the layout.
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () { update(); ticking = false; });
+    }
+
+    measure();
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { measure(); update(); });
+  });
 </script>
 
 </body>
