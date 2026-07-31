@@ -130,30 +130,32 @@
     padding: 0 max(3rem, calc((100% - 940px) / 2)) 7rem;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
-    background:
-      linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
-      linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%),
-      url('images/hero-bg.jpg') center center / cover no-repeat;
     background-color: var(--black);
   }
 
-  /* Second image layer, cross-faded in on scroll */
-  .hero-bg2 {
+  /* Base layer: autoplay background video */
+  .hero-video {
     position: absolute; inset: 0;
-    background:
-      linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
-      linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%),
-      url('images/hero-bg2.jpg') center center / cover no-repeat;
-    background-color: var(--black);
-    opacity: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center center;
     z-index: 0;
     pointer-events: none;
-    will-change: opacity;
+  }
+
+  /* Legibility gradient sitting over the video */
+  .hero-grad {
+    position: absolute; inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(0deg, rgba(15,15,15,0.85) 0%, rgba(15,15,15,0.25) 28%, rgba(15,15,15,0) 55%),
+      linear-gradient(90deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.15) 35%, rgba(15,15,15,0) 70%);
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     width: 100%;
   }
 
@@ -1281,7 +1283,11 @@
 
 <div class="hero-scroll" id="heroScroll">
   <div class="hero">
-    <div class="hero-bg2"></div>
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="images/hero-video-poster.jpg">
+      <source src="images/hero-video.webm" type="video/webm">
+      <source src="images/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-grad"></div>
     <div class="hero-content">
       <h1 class="hero-heading">
         <span class="hero-name">Rich Palmer</span>
@@ -1532,11 +1538,17 @@
     var name = scrollZone.querySelector('.hero-name');
     var rest = scrollZone.querySelector('.hero-rest');
     var sub  = scrollZone.querySelector('.hero-sub');
-    var bg2  = scrollZone.querySelector('.hero-bg2');
-    if (!name || !rest || !bg2) return;
+    var video = document.getElementById('heroVideo');
+    if (!name || !rest) return;
 
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) return; // leave the static single-viewport hero in place
+    if (reduce) {
+      // Respect reduced-motion: freeze on the poster frame, no autoplay.
+      if (video) { video.removeAttribute('autoplay'); video.pause(); }
+      return; // leave the static single-viewport hero in place
+    }
+    // Some browsers need an explicit play() for muted autoplay.
+    if (video && video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function(){}); }
 
     // Distance the "Rich Palmer" line has to travel to reach mid-screen.
     var startTop = 0, targetY = 0;
@@ -1562,10 +1574,9 @@
       rest.style.opacity = fade;
       if (sub) sub.style.opacity = fade;
 
-      // Background cross-fades to the second image (done by ~80%).
-      bg2.style.opacity = clamp(p / 0.8, 0, 1);
-      // Phase 2 (p -> 1): the sticky pin releases and the hero scrolls away,
-      // revealing the page beneath — handled naturally by the layout.
+      // Phase 2 (p -> 1): once "Rich Palmer" reaches mid-screen the sticky pin
+      // releases and the video rolls out of frame, revealing the page beneath —
+      // handled naturally by the layout. No cross-fade.
     }
 
     var ticking = false;
