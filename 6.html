@@ -45,7 +45,7 @@
   }
 
   .nav-inner {
-    max-width: 1100px;
+    max-width: 940px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -156,7 +156,7 @@
 
   /* CASE STUDY HEADER */
   .cs-header {
-    max-width: 1100px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 8rem 3rem 4rem;
     border-bottom: 1px solid var(--border);
@@ -172,19 +172,19 @@
   }
 
   .cs-title {
-    font-size: clamp(1.9rem, 3.8vw, 3.5rem);
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
     font-weight: 600;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    line-height: 1.08;
+    line-height: 1.05;
     margin-bottom: 1.75rem;
     max-width: 700px;
   }
 
   .cs-sub {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
-    line-height: 1.25;
+    line-height: 1.6;
     max-width: 520px;
   }
 
@@ -198,7 +198,7 @@
 
   /* IMAGE FLOW */
   .cs-images {
-    max-width: 1100px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 4rem 3rem 0;
     display: flex;
@@ -231,7 +231,7 @@
 
   /* COPY BLOCK */
   .cs-copy-block {
-    max-width: 1100px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 4rem 3rem;
     border-top: 1px solid var(--border);
@@ -247,9 +247,9 @@
   }
 
   .cs-copy-block p {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
-    line-height: 1.25;
+    line-height: 1.8;
     max-width: 640px;
   }
 
@@ -266,7 +266,7 @@
 
   /* FOOTER NAV */
   .cs-foot-nav {
-    max-width: 1100px;
+    max-width: 940px;
     margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
@@ -348,6 +348,7 @@
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#projects">Projects</a></li>
       <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="archive.html">Archive</a></li>
     </ul>
     <div class="nav-right">
       <a href="mailto:richpalmer71@gmail.com" class="nav-email">
@@ -369,6 +370,7 @@
   <a href="index.html#about" onclick="closeMenu()">About <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
   <a href="index.html#projects" onclick="closeMenu()">Projects <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
   <a href="index.html#contact" onclick="closeMenu()">Contact <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
+  <a href="archive.html" onclick="closeMenu()">Archive <svg style="width:10px;height:10px;display:inline-block;vertical-align:middle;" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="9" x2="9" y2="1"/><polyline points="3,1 9,1 9,7"/></svg></a>
   <div class="mobile-menu-footer">Chaos-Lab – Nottingham, UK</div>
 </div>
 
@@ -473,25 +475,13 @@
   </div>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var hamburger = document.getElementById('hamburger');
-    var mobileMenu = document.getElementById('mobileMenu');
-    if (!hamburger || !mobileMenu) return;
-    hamburger.addEventListener('click', function () {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
   });
   function closeMenu() {
-    var hamburger = document.getElementById('hamburger');
-    var mobileMenu = document.getElementById('mobileMenu');
-    if (hamburger) hamburger.classList.remove('open');
-    if (mobileMenu) mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-</script>
-
-</body>
-</html>
+ 
