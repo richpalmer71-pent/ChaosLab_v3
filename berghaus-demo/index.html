@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berghaus — Explore</title>
+<meta name="description" content="Built for everyday journeys and bigger adventures — the Berghaus backpack range combines dependable performance, practical design and lasting comfort.">
+<link rel="preload" href="fonts/Dazzed-TRIAL-Medium.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="fonts/Dazzed-TRIAL-Bold.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     HEADER  ·  Figma 145:3457  ·  white bar, 101.64px @1920
+     ============================================================ -->
+<header class="hdr" id="top">
+  <div class="hdr__inner">
+
+    <div class="hdr__left">
+      <a class="hdr__logo" href="#top" aria-label="Berghaus — home">
+        <img src="assets/berghaus-logo.svg" alt="Berghaus" width="150" height="31">
+      </a>
+
+      <nav class="hdr__nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#" class="is-current">Men <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+          <li><a href="#">Women <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+          <li><a href="#">Footwear <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+          <li><a href="#">Bags &amp; Accessories <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+          <li><a href="#">Explore <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+          <li><a href="#" class="is-outlet">Outlet <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="hdr__right">
+      <div class="switcher">
+        <button class="switcher__btn" type="button">
+          <svg class="flag" viewBox="0 0 60 30" aria-hidden="true">
+            <clipPath id="uk-a"><path d="M0 0v30h60V0z"/></clipPath>
+            <clipPath id="uk-b"><path d="M30 15h30v15zv15H0zH0V15zV0h30z"/></clipPath>
+            <g clip-path="url(#uk-a)">
+              <path d="M0 0v30h60V0z" fill="#012169"/>
+              <path d="M0 0 60 30M60 0 0 30" stroke="#fff" stroke-width="6"/>
+              <path d="M0 0 60 30M60 0 0 30" clip-path="url(#uk-b)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>
+          <span>GB (GBP £)</span>
+        </button>
+        <button class="switcher__btn" type="button"><span>English</span></button>
+      </div>
+
+      <button class="iconbtn" type="button" aria-label="Search">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14.6" cy="14.6" r="8.6"/><path d="m20.9 20.9 5.1 5.1"/></svg>
+      </button>
+      <button class="iconbtn" type="button" aria-label="Wishlist" data-wishlist>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27.3 5.8 17.4a6.2 6.2 0 0 1 8.8-8.8l1.4 1.4 1.4-1.4a6.2 6.2 0 0 1 8.8 8.8Z"/></svg>
+      </button>
+      <button class="iconbtn" type="button" aria-label="Account">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="5.2"/><path d="M5.6 28a10.4 10.4 0 0 1 20.8 0"/></svg>
+      </button>
+      <button class="iconbtn iconbtn--bag" type="button" aria-label="Bag, 4 items">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M13.2 3 6.1 13.2M18.8 3l7.1 10.2"/>
+          <path d="M2.2 13.2h27.6"/>
+          <path d="M5.4 13.2 8.5 26.6a2.4 2.4 0 0 0 2.3 1.9h10.4a2.4 2.4 0 0 0 2.3-1.9l3.1-13.4"/>
+        </svg>
+        <span class="iconbtn__count">4</span>
+      </button>
+
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO · EXPLORE  ·  Figma 145:3085  ·  full-screen
+       Layer order: plate photo → wordmark → cut-out walker
+       ============================================================ -->
+  <section class="scene scene--hero" aria-labelledby="hero-word" data-parallax>
+    <img class="scene__plate" src="assets/hero-plate.jpg" alt="" data-depth="0.12">
+    <div class="scene__veil" aria-hidden="true"></div>
+
+    <img class="scene__word" id="hero-word" src="assets/word-explore.png" alt="Explore"
+         width="1430" height="245" data-depth="0.30" data-fade="0.05,0.62">
+
+    <img class="scene__front" src="assets/hero-walker.png" alt="A walker heading towards a snow-covered ridge" data-depth="0.05" data-optional>
+
+    <div class="scene__crumbs">
+      <ul class="crumbs">
+        <li>
+          <svg class="crumbs__ico" viewBox="0 0 11 10" aria-hidden="true"><path d="M5.5 0a1.2 1.2 0 0 0-.6 2.2v.9L.4 8.3a.6.6 0 0 0 .4 1h9.4a.6.6 0 0 0 .4-1L6.1 4v-.9A1.2 1.2 0 0 0 5.5 0Z"/></svg>
+          Men&rsquo;s Vaskye Synthetic Insulated Jacket
+        </li>
+        <li>Men&rsquo;s MTN Guide 32L Rucksack</li>
+        <li>Rhynie Waffle Rib Beanie</li>
+      </ul>
+      <p class="crumbs__place">
+        Corrieshalloch Gorge National Nature Reserve | 57.7552° N, 5.0204° W
+        <svg class="crumbs__ico" viewBox="0 0 11 16" aria-hidden="true"><path d="M5.5 0A5.5 5.5 0 0 0 0 5.5C0 9.6 5.5 16 5.5 16S11 9.6 11 5.5A5.5 5.5 0 0 0 5.5 0Zm0 7.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Z"/></svg>
+      </p>
+    </div>
+
+    <div class="scene__cta scene__cta--left">
+      <p>Whether it&rsquo;s changing conditions or long days exposed to the elements, handle whatever nature throws at you and look good doing it.</p>
+      <p><a class="btn" href="#">Start Your Adventure</a></p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ESSENTIALS  ·  Figma 145:3087
+       ============================================================ -->
+  <section class="essentials frame" aria-labelledby="essentials-h">
+    <h2 class="section-title" id="essentials-h">Keep your essentials to hand and your kit protected.</h2>
+
+    <div class="essentials__grid">
+      <article class="tile">
+        <img class="tile__img" src="assets/essentials-left.jpg" alt="Walker on an autumn hillside with a lime and black daypack">
+        <div class="tile__body">
+          <p class="label label--white">Hike</p>
+          <p class="tile__copy">For the high peaks and the lowland trails, our packs have you covered when you head out.</p>
+          <p><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+
+      <article class="tile">
+        <img class="tile__img" src="assets/essentials-right.jpg" alt="Commuter with a black roll-top pack on a city street">
+        <div class="tile__body">
+          <p class="label label--white">Commute</p>
+          <p class="tile__copy">Keeps all your gear secure in one place, protection for your tech and pockets for all your snacks.</p>
+          <p><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="essentials__lede">Built for everyday journeys and bigger adventures, the Berghaus backpack range combines dependable performance, practical design and lasting comfort. From technical packs made for demanding conditions to versatile day packs and relaxed leisure styles, there&rsquo;s a reliable option for every outing.</p>
+  </section>
+
+
+  <!-- ============================================================
+       CATEGORY CARDS  ·  Figma 154:5109  ·  4 × 473px, full bleed
+       ============================================================ -->
+  <section class="cats frame" aria-label="Shop by moment">
+    <article class="cat">
+      <h3 class="cat__title">For when the freezing winds hit you at the summit.</h3>
+      <div class="cat__foot">
+        <p class="label">Mountain Packs</p>
+        <p class="cat__copy">Built for demanding adventures, with dependable comfort when it matters.</p>
+        <p><a class="btn" href="#">Shop Now</a></p>
+      </div>
+      <img class="cat__pack" src="assets/pack-mtn-lime.png" alt="MTN Guide F32 mountain pack in lime">
+      <span class="cat__shadow" aria-hidden="true"></span>
+    </article>
+
+    <article class="cat">
+      <h3 class="cat__title">For when it starts raining and you need a jacket. Now.</h3>
+      <div class="cat__foot">
+        <p class="label">Hike</p>
+        <p class="cat__copy">Trail-ready comfort and practical storage for every step of the journey.</p>
+        <p><a class="btn" href="#">Shop Now</a></p>
+      </div>
+      <img class="cat__pack" src="assets/pack-freeflow.png" alt="3D Freeflow hiking pack in yellow and black">
+      <span class="cat__shadow" aria-hidden="true"></span>
+    </article>
+
+    <article class="cat">
+      <h3 class="cat__title">For when it&rsquo;s time for lunch and you need a sarnie.</h3>
+      <div class="cat__foot">
+        <p class="label">Walk</p>
+        <p class="cat__copy">Easy everyday comfort for local walks, day trips and weekend escapes.</p>
+        <p><a class="btn" href="#">Shop Now</a></p>
+      </div>
+      <img class="cat__pack" src="assets/pack-daypack.png" alt="Remote Hike 23 day pack in green">
+      <span class="cat__shadow" aria-hidden="true"></span>
+    </article>
+
+    <article class="cat">
+      <h3 class="cat__title">For when you need your laptop cable to keep working.</h3>
+      <div class="cat__foot">
+        <p class="label">Commute</p>
+        <p class="cat__copy">Smart, practical storage to keep your everyday essentials close at hand.</p>
+        <p><a class="btn" href="#">Shop Now</a></p>
+      </div>
+      <img class="cat__pack" src="assets/pack-explorer.png" alt="Explorer roll-top commuter pack in black with yellow trim">
+      <span class="cat__shadow" aria-hidden="true"></span>
+    </article>
+  </section>
+
+
+  <!-- ============================================================
+       DISCOVER  ·  Figma 154:5141
+       ============================================================ -->
+  <section class="scene scene--discover frame" aria-labelledby="discover-word" data-parallax>
+    <img class="scene__plate" src="assets/discover-plate.jpg" alt="" data-depth="0.1">
+    <div class="scene__veil" aria-hidden="true"></div>
+
+    <img class="scene__word" id="discover-word" src="assets/word-discover.png" alt="Discover"
+         width="1419" height="217" data-fade="0.22,0.78">
+
+    <img class="scene__front" src="assets/discover-walker.png" alt="A walker above a coastal cliff with a green daypack" data-depth="0.04" data-optional>
+
+    <div class="scene__note">
+      <p>Long days on the trail means you need to pack light, keep your essentials to hand your gear secure.</p>
+    </div>
+
+    <div class="scene__cta scene__cta--right">
+      <p>Be ready for any conditions with our practical daypacks to keep you moving.</p>
+      <p><a class="btn" href="#">See Day Packs</a></p>
+    </div>
+
+    <div class="scene__crumbs scene__crumbs--bottom">
+      <ul class="crumbs">
+        <li>
+          <svg class="crumbs__ico" viewBox="0 0 11 10" aria-hidden="true"><path d="M5.5 0a1.2 1.2 0 0 0-.6 2.2v.9L.4 8.3a.6.6 0 0 0 .4 1h9.4a.6.6 0 0 0 .4-1L6.1 4v-.9A1.2 1.2 0 0 0 5.5 0Z"/></svg>
+          Men&rsquo;s Vaskye Synthetic Insulated Jacket
+        </li>
+        <li>Men&rsquo;s MTN Guide 32L Rucksack</li>
+        <li>Rhynie Waffle Rib Beanie</li>
+      </ul>
+      <p class="crumbs__place">
+        Corrieshalloch Gorge National Nature Reserve | 57.7552° N, 5.0204° W
+        <svg class="crumbs__ico" viewBox="0 0 11 16" aria-hidden="true"><path d="M5.5 0A5.5 5.5 0 0 0 0 5.5C0 9.6 5.5 16 5.5 16S11 9.6 11 5.5A5.5 5.5 0 0 0 5.5 0Zm0 7.6a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Z"/></svg>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PACK SPOTLIGHT  ·  Figma 148:3164 / 154:5094
+       Horizontal carousel — add/remove <article class="pack"> blocks
+       ============================================================ -->
+  <section class="packs frame" aria-labelledby="packs-h">
+    <div class="packs__head">
+      <h2 class="section-title" id="packs-h">For when freezing rain hits you at the summit.</h2>
+      <p class="packs__intro">Built for the toughest challenges, Berghaus technical backpacks combine rugged durability, advanced comfort and dependable performance. Designed for demanding terrain and unpredictable conditions, they&rsquo;re ready to carry you further &ndash; wherever the adventure leads.</p>
+    </div>
+
+    <div class="packs__viewport">
+        <article class="pack">
+          <div class="pack__col pack__col--left">
+            <div class="pack__block">
+              <p class="label">Mountain Packs</p>
+              <div class="pack__desc">
+                <p>The 32L capacity is ideal for all the essentials you need for a day in the mountains. The main bag is made out of extremely durable and water resistant materials and can be easily accessed with a rear zip, so you can get to your kit whenever you need it.</p>
+                <p>All other components are hardwearing and used to deliver great performance in the harshest conditions. The pack shape and harness have been updated to improve load transfer, stability and comfort.</p>
+              </div>
+            </div>
+            <dl class="specs">
+              <div><dt>Collection</dt><dd>Extrem</dd></div>
+              <div><dt>Fabric Comp</dt><dd>44% Polyester, 56% Nylon</dd></div>
+              <div><dt>Hydrostatic Head</dt><dd>1500 mm</dd></div>
+              <div><dt>Weight (kg)</dt><dd>1.425</dd></div>
+              <div><dt>Covered By Repairhaus</dt><dd>Yes</dd></div>
+              <div><dt>Fastening Type</dt><dd>Zip</dd></div>
+            </dl>
+          </div>
+
+          <div class="pack__stage" data-colourways>
+            <span class="pack__glow" aria-hidden="true"></span>
+            <img class="pack__img is-active" src="assets/pack-mtn-black.png"
+                 alt="Berghaus MTN Guide F32 rucksack in black" data-colourway="Black">
+            <img class="pack__img" src="assets/pack-mtn-lime.png"
+                 alt="Berghaus MTN Guide F32 rucksack in lime" data-colourway="Lime" aria-hidden="true">
+            <span class="pack__cast" aria-hidden="true"></span>
+          </div>
+
+          <div class="pack__col pack__col--right">
+            <p class="label">Features</p>
+            <ul class="feats">
+              <li>Updated harness system delivers improved load transfer and comfort, and better moisture management during long days of activity.</li>
+              <li>Made from TPU coated 420D ripstop nylon, which offers exceptional water and abrasion resistance.</li>
+              <li><b>New</b> breathable back panel incorporates a 10mm hypercushion spacer mesh, covered with hardwearing monomesh flat nylon.</li>
+              <li>100% Ocean 210D nylon Seawastex fabric on the shoulder straps and bivvi for durability and water resistance.</li>
+              <li>Updated bag shape for improved stability and load transfer.</li>
+              <li>Top load opening with cinch bivvi closure and zip opening at the back system, provide easy, quick access.</li>
+              <li>Reinforced attachment points for carrying skis and ice axes.</li>
+            </ul>
+          </div>
+
+          <ul class="pack__meta">
+            <li><svg class="crumbs__ico" viewBox="0 0 11 10" aria-hidden="true"><path d="M5.5 0a1.2 1.2 0 0 0-.6 2.2v.9L.4 8.3a.6.6 0 0 0 .4 1h9.4a.6.6 0 0 0 .4-1L6.1 4v-.9A1.2 1.2 0 0 0 5.5 0Z"/></svg> Men&rsquo;s MTN Guide 32L Rucksack</li>
+            <li data-colourway-label>Black</li>
+            <li>H(cm): 57 W(cm): 20 D(cm): 26</li>
+            <li>Fixed For Life</li>
+          </ul>
+        </article>
+
+      <button class="packs__arrow packs__arrow--prev" type="button" aria-label="Previous colourway" data-prev>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5 7.5 12l7 7"/></svg>
+      </button>
+      <button class="packs__arrow packs__arrow--next" type="button" aria-label="Next colourway" data-next>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FEATURED COLLECTION  ·  Figma 161:5107
+       ============================================================ -->
+  <section class="featured frame" aria-labelledby="featured-h">
+    <h2 class="section-title" id="featured-h">Choose your pack and head out</h2>
+
+    <div class="featured__row">
+      <article class="card">
+        <a class="card__media" href="#"><img src="assets/pack-daypack.png" alt="Unisex Remote Hike 23 Rucksack in green"></a>
+        <div class="card__body">
+          <ul class="swatches" aria-label="Colours">
+            <li class="is-active" style="--sw:#1C1C1C"></li>
+            <li style="--sw:#1E7A5A"></li>
+            <li style="--sw:#F2EFEA"></li>
+            <li class="is-oos" style="--sw:#A02C8E"></li>
+          </ul>
+          <h3 class="card__name"><a href="#">Unisex Remote Hike 23 Rucksack - Green</a></h3>
+          <p class="card__price">£65.00 GBP</p>
+          <p class="card__cta"><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card__media" href="#"><img src="assets/pack-freeflow.png" alt="Unisex 3D Freeflow 30+5L S Pack in yellow and black"></a>
+        <div class="card__body">
+          <ul class="swatches" aria-label="Colours">
+            <li class="is-active" style="--sw:#1C1C1C"></li>
+            <li style="--sw:#1E7A5A"></li>
+            <li style="--sw:#F2EFEA"></li>
+            <li class="is-oos" style="--sw:#A02C8E"></li>
+          </ul>
+          <h3 class="card__name"><a href="#">Unisex 3D Freeflow 30+5L S Pack - Yellow/Black</a></h3>
+          <p class="card__price">£155.00 GBP</p>
+          <p class="card__cta"><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card__media" href="#"><img src="assets/pack-mtn-black.png" alt="Women&rsquo;s MTN Guide 45L Rucksack in black"></a>
+        <div class="card__body">
+          <ul class="swatches" aria-label="Colours">
+            <li class="is-active" style="--sw:#1C1C1C"></li>
+            <li style="--sw:#1E7A5A"></li>
+            <li style="--sw:#F2EFEA"></li>
+            <li class="is-oos" style="--sw:#A02C8E"></li>
+          </ul>
+          <h3 class="card__name"><a href="#">Women&rsquo;s MTN Guide 45L Rucksack - Black</a></h3>
+          <p class="card__price">£240.00 GBP</p>
+          <p class="card__cta"><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <a class="card__media" href="#"><img src="assets/pack-explorer-green.png" alt="Unisex Explorer Backpack in green"></a>
+        <div class="card__body">
+          <ul class="swatches" aria-label="Colours">
+            <li class="is-active" style="--sw:#1C1C1C"></li>
+            <li style="--sw:#1E7A5A"></li>
+            <li style="--sw:#F2EFEA"></li>
+            <li class="is-oos" style="--sw:#A02C8E"></li>
+          </ul>
+          <h3 class="card__name"><a href="#">Unisex Explorer Backpack - Green</a></h3>
+          <p class="card__price">£40.00 GBP</p>
+          <p class="card__cta"><a class="btn" href="#">Shop Now</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ============================================================
+     FOOTER  ·  Figma 161:3891  ·  white
+     ============================================================ -->
+<footer class="ftr">
+  <div class="ftr__blocks">
+    <div class="ftr__col ftr__col--social">
+      <ul class="social" aria-label="Berghaus on social">
+        <li><a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 2h2.7a5.3 5.3 0 0 0 4.4 4.4v2.8a8 8 0 0 1-4.4-1.5v6.9a6.2 6.2 0 1 1-6.2-6.2c.3 0 .5 0 .8.1v2.9a3.3 3.3 0 1 0 2.7 3.2Z"/></svg></a></li>
+        <li><a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 0 0-3.8 20.3 10.9 10.9 0 0 1 .2-3l1.2-5.1a3.8 3.8 0 0 1-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5s-.6 2.4-.9 3.7a1.6 1.6 0 0 0 1.7 2c2 0 3.4-2.6 3.4-5.6 0-2.3-1.6-4-4.4-4a5.1 5.1 0 0 0-5.3 5.1 3.1 3.1 0 0 0 .7 2.1.5.5 0 0 1 .1.5l-.2.9c-.1.3-.2.4-.6.2-1.3-.6-2-2.5-2-4C5.2 8 7.5 4.4 12.4 4.4c3.9 0 6.5 2.8 6.5 5.8 0 4-2.2 7-5.5 7a2.9 2.9 0 0 1-2.4-1.2l-.7 2.6a11 11 0 0 1-1.2 2.6A10.5 10.5 0 1 0 12 1.5Z"/></svg></a></li>
+        <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.4h2.8l.4-3.3h-3.2V8.2c0-.9.3-1.6 1.6-1.6h1.7V3.7A22 22 0 0 0 14.4 3c-2.5 0-4.2 1.5-4.2 4.3v2.9H7.4v3.3h2.8V22Z"/></svg></a></li>
+        <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 7.4a2.8 2.8 0 0 0-1.9-2C18.9 5 12 5 12 5s-6.9 0-8.6.4a2.8 2.8 0 0 0-1.9 2A29 29 0 0 0 1.1 12a29 29 0 0 0 .4 4.6 2.8 2.8 0 0 0 1.9 2C5.1 19 12 19 12 19s6.9 0 8.6-.4a2.8 2.8 0 0 0 1.9-2 29 29 0 0 0 .4-4.6 29 29 0 0 0-.4-4.6ZM9.8 15.2V8.8l5.7 3.2Z"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="ftr__col">
+      <h2 class="ftr__h">Help &amp; Information</h2>
+      <ul class="ftr__links">
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Help Centre &amp; FAQs</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">UK Delivery</a></li>
+        <li><a href="#">International Delivery</a></li>
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Black Friday 2026</a></li>
+        <li><a href="#">Klarna</a></li>
+        <li><a href="#">Splitit</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr__col">
+      <h2 class="ftr__h">About Us</h2>
+      <ul class="ftr__links">
+        <li><a href="#">Brand History</a></li>
+        <li><a href="https://www.berghaus.com/special-pricing.list" class="is-link">Student &amp; Keyworker discount</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Outlet Stores</a></li>
+        <li><a href="#">Sustainability Report</a></li>
+        <li><a href="#">Media Enquiries</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr__col">
+      <h2 class="ftr__h">Product Care</h2>
+      <ul class="ftr__links">
+        <li><a href="#">Waterproof Aftercare</a></li>
+        <li><a href="#">Down Insulation Care</a></li>
+        <li><a href="#">Footwear Care</a></li>
+        <li><a href="#">Free Repairs</a></li>
+        <li><a href="#">Product Lifetime Guarantee</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ftr__utility">
+    <div class="ftr__region">
+      <label class="ftr__region-label" for="region">Country/region</label>
+      <div class="field">
+        <select id="region">
+          <option>United Kingdom | GBP £</option>
+          <option>Ireland | EUR €</option>
+          <option>Germany | EUR €</option>
+          <option>France | EUR €</option>
+          <option>United States | USD $</option>
+        </select>
+        <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 6.2 8 10.4l4.7-4.2"/></svg>
+      </div>
+    </div>
+
+    <div class="trustpilot" aria-label="Rated Excellent on Trustpilot">
+      <p class="trustpilot__name"><svg class="trustpilot__star" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 1 3 7.3 7.9.6-6 5.1 1.8 7.7L12 17.6 5.3 21.7 7.1 14l-6-5.1 7.9-.6Z"/></svg>Trustpilot</p>
+      <ul class="trustpilot__stars">
+        <li></li><li></li><li></li><li></li><li></li>
+      </ul>
+    </div>
+
+    <div class="ftr__pay">
+      <ul class="pay" aria-label="Payment methods we accept">
+        <li class="pay--klarna"><span>Klarna</span></li>
+        <li class="pay--gpay"><span>G Pay</span></li>
+        <li class="pay--visa"><span>VISA</span></li>
+        <li class="pay--mc"><i></i><i></i></li>
+        <li class="pay--amex"><span>AMEX</span></li>
+        <li class="pay--apple"><svg viewBox="0 0 34 14" aria-hidden="true"><path d="M6.4 3.2c.4-.5.7-1.2.6-1.9-.6 0-1.3.4-1.7.9-.4.4-.7 1.1-.6 1.8.7 0 1.3-.3 1.7-.8Zm.6 1c-1 0-1.8.6-2.2.6-.5 0-1.2-.5-2-.5-1 0-2 .6-2.5 1.6-1 1.8-.3 4.5.7 6 .5.7 1.1 1.5 1.9 1.5.8 0 1-.5 2-.5s1.2.5 2 .5 1.3-.7 1.8-1.4c.6-.8.8-1.6.8-1.6s-1.6-.6-1.6-2.4c0-1.5 1.2-2.2 1.3-2.3-.7-1-1.8-1.2-2.2-1.2Z"/><text x="11" y="11.4" font-family="Helvetica,Arial,sans-serif" font-size="9" font-weight="700">Pay</text></svg></li>
+        <li class="pay--maestro"><i></i><i></i></li>
+      </ul>
+      <p class="ftr__copy">© <span data-year>2026</span> Berghaus Limited. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <nav class="ftr__legal" aria-label="Legal">
+    <ul>
+      <li><a href="#">Terms &amp; Conditions</a></li>
+      <li><a href="#">Cookie Information</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Site Map</a></li>
+      <li><a href="#">Modern Slavery Statement</a></li>
+      <li><a href="#">Gender Pay Report</a></li>
+      <li><a href="#">Section 172 Statement</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
