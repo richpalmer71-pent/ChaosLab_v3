@@ -1,0 +1,80 @@
+# Speedo — Head / Space
+
+Static homepage concept. One HTML file plus an `assets/` folder, no build step,
+no dependencies, nothing loaded off the network. Drop it on any static host.
+
+```
+index.html
+assets/
+  hero.jpg  banner.jpg  panel-ladder.jpg  panel-goggles.jpg
+  p1–p4.jpg                 product rail tiles
+  orbit.mp4                 360° turntable, 308 frames, all-keyframe
+  orbit-poster.jpg          first frame, shown before the video decodes
+  speedo-logo.svg           boomerang mark, traced from the brand lockup
+  fonts/athletics-*.woff2   300/400/500/700/800/900
+```
+
+## Running it
+
+Opening `index.html` directly works. To serve it:
+
+```bash
+python3 -m http.server 8000     # then http://localhost:8000
+```
+
+GitHub Pages, Netlify and Vercel all serve it as-is from the repo root.
+
+## What's interactive
+
+**Hero** — reads in full on load, then melts away on scroll: blur up, opacity
+down, short drift. Supporting copy goes first, the mark clears next and hands
+over to the nav, the headline lingers longest. All inside ~0.75 of a screen.
+
+**Orbit viewer** — drag the model to rotate. Endless in both directions, with
+momentum on a flick and a settle onto the nearest of four views. Arrow keys step
+a quarter turn when the viewer is on screen.
+
+**Banner** — pins once fully revealed, drops MOVE. / BREATHE. / RESET. in one at
+a time, then the body copy, then releases.
+
+## Tuning
+
+| What | Where | Now |
+|---|---|---|
+| Hero melt pace | `.hero-stage` height | `175vh` |
+| Melt stagger | `range()` bounds in `heroFrame()` | 0.00–0.50 |
+| Banner pace | `.banner-stage` height | `210vh` |
+| Word timing | `WORD_IN` / `BODY_IN` | — |
+| Quarter-turn time | `TURN_MS` | `1400` |
+| Drag sensitivity | `DRAG_TURNS` | `1.15` turns per viewer width |
+| Flick momentum | `DECAY` | `0.93` |
+| Snap to four views | `SNAP` | `true` |
+| Colours | `:root` tokens | from Figma variables |
+
+## Notes on the orbit clip
+
+The source render drifted: its last frame was a visibly different render of the
+model from its first, so the turn didn't close and the front view popped. The
+shipped `orbit.mp4` carries eight synthesised frames bridging that gap — optical
+flow warps the geometry from both sides, and the render mismatch dissolves
+across the middle. Worst frame-to-frame step across the join is 1.52 against the
+clip's own 0.76 baseline, down from 4.53.
+
+Every frame is a keyframe so scrubbing is instant, which costs size (4.1MB). For
+a bandwidth-sensitive deploy, roughly halve it:
+
+```bash
+ffmpeg -i assets/orbit.mp4 -c:v libx264 -crf 21 -g 3 -keyint_min 3 \
+  -sc_threshold 0 -pix_fmt yuv420p -movflags +faststart -an assets/orbit-web.mp4
+```
+
+Seeks then decode up to two frames forward — still responsive, slightly less
+immediate under a fast drag.
+
+If a seamless 360° render lands later, drop it in and delete the bridge: set
+`LOOP = true` (already true) and nothing else changes.
+
+## Assets
+
+Photography, the Athletics typeface and the Speedo mark are client-supplied and
+not for redistribution.
