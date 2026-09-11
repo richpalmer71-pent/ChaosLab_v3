@@ -53,15 +53,16 @@ a time, then the body copy, then releases.
 
 ## Notes on the orbit clip
 
-The source render drifted: its last frame was a visibly different render of the
-model from its first, so the turn didn't close and the front view popped. The
-shipped `orbit.mp4` carries eight synthesised frames bridging that gap — optical
-flow warps the geometry from both sides, and the render mismatch dissolves
-across the middle. Worst frame-to-frame step across the join is 1.52 against the
-clip's own 0.76 baseline, down from 4.53.
+`orbit.mp4` is a 960×960 ghost-mannequin turntable, 193 frames at 24fps, and it
+closes on its own: the last-to-first step measures 1.57 against the clip's 1.14
+baseline, smaller than several ordinary transitions inside it. No bridging
+frames, no seam handling — `LOOP = true` and the rotation is genuinely endless.
 
-Every frame is a keyframe so scrubbing is instant, which costs size (4.1MB). For
-a bandwidth-sensitive deploy, roughly halve it:
+Quarter marks land on front / left / rear / right with no offset, so the four
+snap positions are just `duration × n/4`.
+
+Every frame is a keyframe so scrubbing is instant, which costs size (3.6MB). For
+a bandwidth-sensitive deploy, roughly halve it to 1.8MB:
 
 ```bash
 ffmpeg -i assets/orbit.mp4 -c:v libx264 -crf 21 -g 3 -keyint_min 3 \
@@ -71,8 +72,9 @@ ffmpeg -i assets/orbit.mp4 -c:v libx264 -crf 21 -g 3 -keyint_min 3 \
 Seeks then decode up to two frames forward — still responsive, slightly less
 immediate under a fast drag.
 
-If a seamless 360° render lands later, drop it in and delete the bridge: set
-`LOOP = true` (already true) and nothing else changes.
+Swapping in a different clip: it needs to be square, loop cleanly, and put the
+front view at frame 0 with the rotation spread evenly. Nothing in the player is
+tied to this particular file.
 
 ## Assets
 

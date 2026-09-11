@@ -192,34 +192,34 @@ a{color:inherit;text-decoration:none}
 
 /* orbit viewer */
 .orbit{
-  position:relative;background:#E4E4E4;overflow:hidden;aspect-ratio:9/8;
+  position:relative;background:#C5C5C5;overflow:hidden;aspect-ratio:1;  /* matches the clip */
   cursor:grab;touch-action:pan-y;               /* vertical page scroll still works on touch */
   user-select:none;-webkit-user-select:none
 }
 .orbit.is-dragging{cursor:grabbing}
-.orbit__video{width:100%;height:100%;object-fit:cover;background:#E4E4E4;pointer-events:none}
+.orbit__video{width:100%;height:100%;object-fit:cover;background:#C5C5C5;pointer-events:none}
 
 /* --- drag cursor: replaces the pointer inside the viewer --------------- */
 .orbit__cursor{position:absolute;left:0;top:0;z-index:4;pointer-events:none;will-change:transform}
 .orbit__cursor-in{
-  display:flex;flex-direction:column;align-items:center;gap:7px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
   color:var(--ink);text-align:center;opacity:0;
   transform:translate(-50%,-50%) scale(.86);
   transition:opacity .18s var(--ease), transform .3s var(--ease)
 }
 .orbit__cursor.is-on  .orbit__cursor-in{opacity:1;transform:translate(-50%,-50%) scale(1)}
 .orbit__cursor.is-down .orbit__cursor-in{transform:translate(-50%,-50%) scale(.94)}
-.orbit__cursor-arrows{display:flex;align-items:center;gap:9px}
+.orbit__cursor-arrows{display:flex;align-items:center;gap:14px}
 .orbit__cursor-arrows svg{
-  width:11px;height:11px;stroke:currentColor;stroke-width:2.1;fill:none;
+  width:17px;height:17px;stroke:currentColor;stroke-width:2.4;fill:none;
   stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)
 }
-.orbit__cursor.is-down .orbit__cursor-arrows svg:first-child{transform:translateX(-4px)}
-.orbit__cursor.is-down .orbit__cursor-arrows svg:last-child {transform:translateX(4px)}
-.orbit__cursor-dot{width:3px;height:3px;border-radius:50%;background:currentColor}
+.orbit__cursor.is-down .orbit__cursor-arrows svg:first-child{transform:translateX(-7px)}
+.orbit__cursor.is-down .orbit__cursor-arrows svg:last-child {transform:translateX(7px)}
+.orbit__cursor-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
 .orbit__cursor-label{
-  font-size:12.5px;font-weight:400;letter-spacing:.005em;white-space:nowrap;
-  transition:opacity .18s linear
+  font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+  white-space:nowrap;transition:opacity .18s linear
 }
 .orbit__cursor.is-down .orbit__cursor-label{opacity:0}
 
@@ -233,7 +233,7 @@ a{color:inherit;text-decoration:none}
 /* resting badge — the same graphic as the cursor, centred, until the pointer arrives */
 .orbit__badge{
   position:absolute;left:50%;top:50%;z-index:3;pointer-events:none;
-  display:flex;flex-direction:column;align-items:center;gap:7px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
   color:var(--ink);text-align:center;
   transform:translate(-50%,-50%);
   transition:opacity .28s var(--ease), transform .28s var(--ease)
@@ -424,7 +424,6 @@ a{color:inherit;text-decoration:none}
   .card{flex:0 0 calc((100% - 2 * clamp(10px,1.1vw,18px)) / 2.4)}
   .foot__grid{grid-template-columns:1fr 1fr;gap:32px}
   .pdp__grid{grid-template-columns:1fr}
-  .orbit{aspect-ratio:1}
   .pdp__info{max-width:none}
 }
 @media (max-width:860px){
@@ -970,10 +969,10 @@ var startX = 0, startVirt = 0, lastX = 0, lastT = 0, vel = 0, moved = false;
 function used(){ orbitEl.classList.add('is-live'); }
 
 /* Horizontal travel maps onto rotation: a full width of drag is DRAG_TURNS
-   revolutions. Negative because a drag grabs the figure and pulls it with you —
-   the opposite sense to the arrow buttons, which mean "show me the next view". */
+   revolutions. Sign follows the clip's own direction of turn — flip it if a
+   replacement clip rotates the other way. */
 function pxToTime(dx){
-  return -(dx / (orbitEl.clientWidth || 1)) * loopLen * DRAG_TURNS;
+  return (dx / (orbitEl.clientWidth || 1)) * loopLen * DRAG_TURNS;
 }
 
 function onDown(e){
