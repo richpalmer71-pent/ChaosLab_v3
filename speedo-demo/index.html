@@ -118,7 +118,11 @@ a{color:inherit;text-decoration:none}
   overflow:hidden;background:var(--blue-deep);
 }
 .hero__media{position:absolute;inset:0;overflow:hidden}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:58% 42%;will-change:transform}
+.hero__media video{
+  width:100%;height:100%;object-fit:cover;object-position:58% 42%;
+  background:var(--blue-deep);will-change:transform;
+  backface-visibility:hidden;            /* keep the film on its own GPU layer while it drifts */
+}
 .hero__scrim{
   position:absolute;inset:0;
   background:linear-gradient(100deg,
@@ -521,7 +525,14 @@ a{color:inherit;text-decoration:none}
 <!-- ============================ HERO ============================ -->
 <section class="hero-stage" id="heroStage">
   <div class="hero">
-    <div class="hero__media"><img id="heroImg" src="assets/hero.jpg" alt="Swimmer resting at the surface of open water at dawn"></div>
+    <div class="hero__media">
+      <!-- hero film: 2144x1440 H.264 High, near-lossless, seamless loop, no audio track.
+           The poster is its first frame, so there is no flash before playback starts. -->
+      <video id="heroMedia" src="assets/hero.mp4" poster="assets/hero-poster.jpg"
+             autoplay muted loop playsinline preload="auto"
+             disablepictureinpicture disableremoteplayback
+             role="img" aria-label="Swimmer resting at the surface of open water at dawn"></video>
+    </div>
     <div class="hero__scrim"></div>
     <div class="hero__inner">
       <div class="hero__copy" id="heroCopy">
@@ -756,7 +767,7 @@ var easeIn    = function(t){ return t*t*(3-2*t)*t; };
    ========================================================= */
 var nav       = document.getElementById('nav');
 var stage     = document.getElementById('heroStage');
-var heroImg   = document.getElementById('heroImg');
+var heroMedia = document.getElementById('heroMedia');
 var heroMark  = document.getElementById('heroMark');
 var heroTitle = document.getElementById('heroTitle');
 var heroSub   = document.getElementById('heroSub');
@@ -782,13 +793,38 @@ function heroFrame(){
   melt(heroTitle, easeIn(range(p, 0.10, 0.50)), 64, 16);
   melt(heroMark,  easeIn(range(p, 0.06, 0.36)), 96, 12);
 
-  /* slow drift on the photograph */
-  heroImg.style.transform = 'scale(' + (1 + p * 0.06).toFixed(4) + ') translateY(' + (p * -18).toFixed(1) + 'px)';
+  /* slow drift on the film */
+  heroMedia.style.transform = 'scale(' + (1 + p * 0.06).toFixed(4) + ') translateY(' + (p * -18).toFixed(1) + 'px)';
 
   /* nav takes over once the mark has cleared */
   nav.classList.toggle('is-in', p > 0.34);
 
   scrollHint.style.opacity = (0.75 * (1 - range(p, 0.01, 0.10))).toFixed(3);
+}
+
+/* hero film playback
+   - reduced motion: hold on the poster frame, never play
+   - plays only while the hero is on screen, so the decoder is free
+     for the orbit scrub further down the page
+   - if autoplay is refused (e.g. iOS Low Power Mode) the poster stays */
+if (heroMedia){
+  heroMedia.muted = true;                       /* belt and braces for autoplay policy */
+  var heroPlay = function(){
+    var pr = heroMedia.play();
+    if (pr && pr.catch) pr.catch(function(){});
+  };
+  if (REDUCED){
+    heroMedia.removeAttribute('autoplay');
+    heroMedia.pause();
+  } else if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) heroPlay(); else heroMedia.pause();
+      });
+    }, {threshold:0}).observe(stage);
+  } else {
+    heroPlay();
+  }
 }
 
 /* nav gains its border once we are past the hero entirely */

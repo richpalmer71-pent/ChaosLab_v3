@@ -6,7 +6,9 @@ no dependencies, nothing loaded off the network. Drop it on any static host.
 ```
 index.html
 assets/
-  hero.jpg  banner.jpg  panel-ladder.jpg  panel-goggles.jpg
+  hero.mp4                  hero film, 2144×1440, seamless 8.9s loop, no audio
+  hero-poster.jpg           its first frame, shown until playback starts
+  banner.jpg  panel-ladder.jpg  panel-goggles.jpg
   p1–p4.jpg                 product rail tiles
   orbit.mp4                 360° turntable, 308 frames, all-keyframe
   orbit-poster.jpg          first frame, shown before the video decodes
@@ -26,8 +28,8 @@ GitHub Pages, Netlify and Vercel all serve it as-is from the repo root.
 
 ## What's interactive
 
-**Hero** — reads in full on load, then melts away on scroll: blur up, opacity
-down, short drift. Supporting copy goes first, the mark clears next and hands
+**Hero** — a full-bleed looping film. Reads in full on load, then melts away on
+scroll: blur up, opacity down, short drift on the film. Supporting copy goes first, the mark clears next and hands
 over to the nav, the headline lingers longest. All inside ~0.75 of a screen.
 
 **Orbit viewer** — drag the model to rotate. Endless in both directions, with
@@ -50,6 +52,25 @@ a time, then the body copy, then releases.
 | Flick momentum | `DECAY` | `0.93` |
 | Snap to four views | `SNAP` | `true` |
 | Colours | `:root` tokens | from Figma variables |
+
+## Notes on the hero film
+
+`hero.mp4` is H.264 High, 2144×1440, 24fps, ~16.6 Mbps, `+faststart`, BT.709
+tagged. It was re-encoded near-lossless from the After Effects export
+(PSNR ≈ 58 dB against the source), with the audio track dropped.
+
+The source didn't close — its last-to-first step measured 9.3 against a 0.9
+baseline, a visible jump. The final 30 frames are now optical-flow morphed into
+the opening frames, so the loop seam measures 0.85 and the clip plays with a
+plain `loop`.
+
+Playback: autoplays muted inline; pauses whenever the hero is off screen, so the
+decoder is free for the orbit scrub; holds on the poster under reduced motion or
+if autoplay is refused (iOS Low Power Mode).
+
+Sharpness ceiling is the export resolution. For a crisper full-screen result on
+Retina / 5K, re-export from AE at 3840 wide or larger and rerun the same loop
+and encode.
 
 ## Notes on the orbit clip
 
