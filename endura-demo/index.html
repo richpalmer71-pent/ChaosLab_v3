@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endura — Protection For Your Melon</title>
+<meta name="description" content="Endura helmets and winter outerwear homepage concept.">
+<link rel="preload" href="assets/hero.jpg" as="image">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+/* ---------- Type ---------- */
+@font-face{font-family:"Gravity Condensed";src:url(assets/fonts/gravity-condenseditalic.woff2) format("woff2");font-style:italic;font-display:swap}
+@font-face{font-family:"Gravity Condensed";src:url(assets/fonts/gravity-condensed.woff2) format("woff2");font-style:normal;font-display:swap}
+@font-face{font-family:"Gravity ExtraCondensed";src:url(assets/fonts/gravity-extracondenseditalic.woff2) format("woff2");font-style:italic;font-display:swap}
+@font-face{font-family:"Gravity ExtraCondensed";src:url(assets/fonts/gravity-extracondensed.woff2) format("woff2");font-style:normal;font-display:swap}
+@font-face{font-family:"Gravity XCompressed";src:url(assets/fonts/gravity-xcompresseditalic.woff2) format("woff2");font-style:italic;font-display:swap}
+@font-face{font-family:"Gravity Compressed";src:url(assets/fonts/gravity-compressed.woff2) format("woff2");font-style:normal;font-display:swap}
+
+/* ---------- Tokens (from Figma variables) ---------- */
+:root{
+  --text:#0f1317; --text-2:#1d1d1b; --text-body:#262626; --text-light:#595959;
+  --white:#fff; --bg:#f2f2f2; --bg-soft:#f5f5f5; --border:#e0e0e0; --border-2:#ccc;
+  --brand-blue:#215baf; --sale:#fa8542;
+  --olive:#797257; --stone:#dad9d5; --tan:#896a47; --lime:#addf4d; --yellow:#f9d837; --ink:#000106; --bark:#54453a;
+
+  --f-display:"Gravity Condensed", "Arial Narrow", sans-serif;
+  --f-h2:"Gravity ExtraCondensed", "Arial Narrow", sans-serif;
+  --f-eyebrow:"Gravity XCompressed", "Arial Narrow", sans-serif;
+  --f-nav:"Gravity Compressed", "Arial Narrow", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"PT Mono", ui-monospace, Menlo, monospace;
+
+  /* 1920 artboard → fluid. 246px text inset, 100px rail gutter. */
+  --inset:clamp(20px, 12.8vw, 246px);
+  --gutter:clamp(16px, 5.2vw, 100px);
+  --wrap:1720px;
+  --radius-btn:9.556px;
+  --h1:clamp(52px, 4.97vw, 95.37px);
+  --h2:clamp(36px, 2.62vw, 50.33px);
+  --eyebrow:clamp(24px, 1.67vw, 32px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--text);font:400 16px/1.3 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.logo{display:block;color:var(--text)}
+
+/* ---------- Shared bits ---------- */
+.h1{font:italic 400 var(--h1)/.9 var(--f-display);text-transform:uppercase;margin:0;letter-spacing:0}
+.h2{font:italic 400 var(--h2)/1 var(--f-h2);text-transform:uppercase;letter-spacing:.012em;margin:0}
+.eyebrow{font:italic 400 var(--eyebrow)/.9 var(--f-eyebrow);text-transform:uppercase;margin:0}
+.lede{font-weight:700;max-width:376px;margin:0}
+.copy{max-width:406px;margin:0;line-height:1.3}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14.33px 19.11px;border-radius:var(--radius-btn);border:1.194px solid var(--border);background:var(--white);color:var(--text-2);
+  font:400 17.92px/1.3 var(--f-h2);letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;transition:transform .2s ease, background-color .2s ease, color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--brand-blue);outline-offset:3px}
+.btn--tan{background:var(--tan);border-color:var(--tan);color:var(--white)}
+.btn--lime{background:var(--lime);border-color:var(--lime)}
+.stack{display:flex;flex-direction:column;align-items:flex-start}
+
+/* Placeholder slot — swap for final cut-outs */
+.ph{position:relative;display:grid;place-items:center;text-align:center;border:1.5px dashed currentColor;border-radius:10px;opacity:.75;
+  font:400 12px/1.4 var(--f-mono);letter-spacing:-.02em;padding:16px}
+.ph span{max-width:26ch}
+
+/* ---------- Header ---------- */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:0 var(--gutter);pointer-events:none}
+.bar{pointer-events:auto;max-width:var(--wrap);margin:0 auto;height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;
+  background:var(--white);border-radius:0 0 12px 12px;transition:box-shadow .3s ease, height .3s ease}
+.site-header.is-scrolled .bar{box-shadow:0 8px 30px rgba(15,19,23,.12);height:72px}
+.js .site-header{transform:translateY(-110%);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.js .site-header.is-visible,.js .site-header:focus-within{transform:none}
+.bar__left{display:flex;align-items:center;gap:24px}
+.bar .logo svg{width:204px;height:auto}
+.nav{display:flex;gap:16px;list-style:none;margin:0;padding:0}
+.nav a{display:inline-flex;align-items:center;gap:8px;font:400 16px/21px var(--f-nav);text-transform:uppercase;color:var(--text);padding:4px 0;position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:20px;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a.sale{color:var(--sale)}
+.nav svg{width:12px;height:12px}
+.bar__right{display:flex;align-items:center;gap:24px}
+.locale{display:inline-flex;align-items:center;gap:10px;font:400 14px/1 var(--f-nav);text-transform:uppercase}
+.locale svg{width:12px;height:12px}
+.icon-btn{width:24px;height:24px;display:grid;place-items:center;position:relative}
+.icon-btn svg{width:24px;height:24px}
+.bag-count{position:absolute;right:-5px;bottom:-5px;width:14px;height:14px;border-radius:50%;background:var(--brand-blue);color:#fff;font:700 9px/14px var(--f-body);text-align:center}
+.burger{display:none}
+
+/* ---------- Hero ---------- */
+/* Hero: sticky stage. Scroll plays face → glitch → skull, copy lifts out, then the nav drops in. */
+.hero-stage{position:relative;height:260vh}                 /* scroll length of the sequence */
+.hero{position:sticky;top:0;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:#29352c;color:var(--white)}
+.hero__media{position:absolute;inset:0}
+.hero__frames{position:absolute;inset:0;transform:scale(1.2);transform-origin:10% 55%}
+.hero__frames img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.hero__frames img + img{opacity:0;will-change:opacity}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,16,12,.55) 0%,rgba(10,16,12,.25) 38%,rgba(10,16,12,0) 60%)}
+.hero__content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:86px var(--inset) 0}
+.hero .h1{max-width:10.6ch}
+.hero .lede{margin-top:34px}
+.hero .btn{margin-top:22px}
+
+/* ---------- Helmet feature ---------- */
+.feature-helmet{background:var(--olive);color:var(--white);padding:clamp(64px,8.8vw,169px) var(--gutter)}
+.fh{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,3.2vw,60px);align-items:center;min-height:623px}
+.fh__callouts{position:relative;z-index:2;list-style:none;margin:0;padding:0 0 0 clamp(0px,5.2vw,100px);display:grid;gap:60px}
+.callout{position:relative;min-height:62px;display:flex;align-items:center;padding:14px 28px;border:1px solid var(--white);border-radius:var(--radius-btn);font-weight:600;line-height:1.22;max-width:406px}
+.callout::after{content:"";position:absolute;left:100%;top:50%;height:1px;width:var(--reach);background:var(--white);opacity:.9}
+.callout::before{content:"";position:absolute;left:calc(100% + var(--reach) - 4px);top:calc(50% - 4px);width:8px;height:8px;border-radius:50%;background:var(--white);box-shadow:0 0 0 5px rgba(255,255,255,.2)}
+.callout:nth-child(1){--reach:clamp(60px,21.4vw,410px)}
+.callout:nth-child(2){--reach:clamp(60px,16.7vw,321px)}
+.callout:nth-child(3){--reach:clamp(60px,16.8vw,322px)}
+.callout:nth-child(4){--reach:clamp(60px,28.3vw,543px)}
+.fh__product{position:relative;aspect-ratio:628/623;width:100%;max-width:628px;justify-self:center;color:rgba(255,255,255,.8)}
+.fh__product .ph{position:absolute;inset:0}
+.fh__product img{position:relative;width:100%;height:100%;object-fit:contain}
+.shadow{position:absolute;left:6%;right:6%;bottom:-6%;height:32px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.35),rgba(0,0,0,0));pointer-events:none}
+.fh__text{gap:24px;max-width:406px}
+.fh__text .eyebrow{color:#d9d9d5}
+
+/* ---------- Product rails ---------- */
+.rail{padding:77px var(--gutter)}
+.rail--olive{background:var(--olive);color:var(--white)}
+.rail--white{background:var(--white);color:#000}
+.rail__grid{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15.62px}
+.card{border-radius:8.22px;overflow:hidden}
+.card__media{position:relative;padding:15.71px}
+.card__img{position:relative;aspect-ratio:1;background:var(--stone);border-radius:4.93px 4.93px 0 0;overflow:hidden;display:grid;place-items:center;color:#8d8a80}
+.card__img img{width:100%;height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card__img img{transform:scale(1.04)}
+.card__img .ph{position:absolute;inset:14px;border-color:rgba(0,0,0,.25)}
+.card__img:has(img){background:none}
+.card__img img{object-fit:cover}
+.card__body{position:relative;padding:15.71px;display:flex;flex-direction:column;gap:11.78px}
+.card__name{font:400 13.75px/1.6 var(--f-display);font-style:normal;text-transform:uppercase;margin:0}
+.card__price{font:700 13.75px/1.6 var(--f-mono);margin:3.9px 0 0}
+.tags{display:flex;gap:3.93px;flex-wrap:wrap;list-style:none;margin:0;padding:0}
+.tags li{background:var(--bg-soft);color:var(--text);border-radius:3.93px;padding:2.95px 7.86px 4.9px;font:400 11.78px/1.6 var(--f-mono);letter-spacing:-.49px}
+.tags--tan li{color:var(--tan)}
+.atc{position:absolute;right:16.7px;top:15.71px;width:39.28px;height:39.28px;border-radius:3.93px;background:var(--white);border:.98px solid var(--border);display:grid;place-items:center;color:var(--text)}
+.atc svg{width:18px;height:18px}
+
+/* ---------- Full-bleed banners ---------- */
+.banner{position:relative;min-height:clamp(560px,46.9vw,900px);overflow:hidden;color:var(--white);display:flex;align-items:center}
+.banner__media{position:absolute;inset:0}
+.banner__media img{width:100%;height:100%;object-fit:cover}
+.banner--dirty{background:#3a3129}
+.banner--dirty .banner__media img{object-position:50% 22%;transform:scale(1.3);transform-origin:0 22%}
+.banner--dirty .banner__media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,.1) 45%,rgba(0,0,0,0) 65%)}
+.banner__content{position:relative;z-index:2;padding:0 var(--inset);gap:34px;max-width:calc(700px + var(--inset) * 2)}
+.banner__content .sub{gap:22px}
+.accent-lime{color:var(--lime)}
+.nowrap{white-space:nowrap}
+
+/* ---------- SingleTrack jacket feature ---------- */
+.feature-jacket{position:relative;background:var(--olive);color:var(--white);padding:clamp(64px,5.8vw,111px) var(--gutter)}
+.fj{max-width:1428px;margin:0 auto;display:grid;grid-template-columns:444px minmax(0,1fr) 406px;gap:clamp(24px,2vw,40px);align-items:center;min-height:679px}
+.fj__text{gap:24px}
+.fj__text .eyebrow{color:#d9d9d5}
+@media (min-width:1181px){.fj__text .h2{white-space:nowrap}}
+.fj__product{position:relative;justify-self:center;width:min(calc(100% + 8vw),calc(100% + 180px));max-width:679px;aspect-ratio:1}
+.fj__product img{width:100%;height:100%;object-fit:contain}
+.fj__product .shadow{bottom:-3%;background:radial-gradient(closest-side,rgba(0,0,0,.3),rgba(0,0,0,0))}
+.fj__spec{align-self:start;margin-top:158px;display:flex;flex-direction:column;gap:23px}
+.spec-box{background:var(--yellow);border:1.194px solid #ddd;border-radius:var(--radius-btn);padding:33px 28px;color:var(--bark)}
+.spec-box ul{margin:0;padding-left:24px;line-height:1.57}
+
+/* ---------- Winter: intro, looping film, product trio ---------- */
+.winter{background:var(--ink);color:var(--white)}
+.winter__intro{min-height:398px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:34px;padding:72px var(--gutter)}
+.winter__intro .lede{max-width:549px}
+.winter__intro .sub{align-items:center;gap:22px}
+.winter__film{position:relative;aspect-ratio:1920/1000;max-height:100vh;width:100%;overflow:hidden;background:var(--ink)}
+.winter__film video,.winter__film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.winter__film::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,var(--ink) 0%,rgba(0,1,6,0) 12%,rgba(0,1,6,0) 88%,var(--ink) 100%)}
+.winter__products{margin:0 auto;padding:40px var(--gutter) clamp(72px,7vw,130px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:41px;max-width:calc(var(--wrap) + var(--gutter) * 2)}
+.wp{display:flex;flex-direction:column;gap:70px}
+.wp__img{position:relative;aspect-ratio:1;display:grid;place-items:center}
+.wp__img img{width:86.8%;height:86.8%;object-fit:contain;position:relative;z-index:1;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.wp:hover .wp__img img{transform:translateY(-6px) scale(1.02)}
+.wp__img::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:6%;border-radius:50%;background:radial-gradient(closest-side,rgba(173,223,77,.22),rgba(173,223,77,0))}
+.wp__text{gap:24px;flex:1}
+.wp__text .btn{margin-top:auto}   /* CTAs line up across the trio */
+.wp__text .copy{max-width:546px}
+.wp__text .eyebrow{color:var(--lime)}
+
+/* ---------- Footer ---------- */
+.footer{border-top:1.33px solid var(--border-2);background:var(--white);color:var(--text-body)}
+.footer__blocks{display:grid;grid-template-columns:458px repeat(3,344px);justify-content:space-between;padding:85px 42.67px 0;gap:32px}
+.footer__brand{gap:42.67px;padding-right:32px}
+.footer__brand .logo svg{width:min(322px,100%);height:auto}
+.footer__brand p{margin:0;font:400 18.67px/1.5 var(--f-body);letter-spacing:.37px}
+.socials{display:flex;gap:21.33px}
+.socials a{width:32px;height:32px;display:grid;place-items:center}
+.socials svg{width:32px;height:32px}
+.footer h3{margin:0 0 21.33px;font:italic 400 21.33px/1.2 var(--f-display);text-transform:uppercase;color:var(--text-body)}
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:21.33px;font:400 18.67px/1.6 var(--f-body)}
+.footer ul a:hover{text-decoration:underline;text-underline-offset:3px}
+.footer__utility{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:42.67px;flex-wrap:wrap}
+.region label{display:block;font:700 16px/1.6 var(--f-body);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10.67px}
+.region__field{display:inline-flex;align-items:center;gap:10.67px;height:64px;padding:0 21.33px;border:1.33px solid var(--text-body);font:700 21.33px/1.3 var(--f-body);letter-spacing:1.33px;text-transform:uppercase}
+.region__field svg{width:21px;height:21px}
+.payments{display:flex;flex-direction:column;align-items:flex-end;gap:14.67px}
+.payments ul{display:flex;gap:21.33px;list-style:none;margin:0;padding:0}
+.payments li{width:50.67px;height:32px;border-radius:4px;border:1px solid #e3e3e3;display:grid;place-items:center;font:700 10px/1 var(--f-body);letter-spacing:.02em;color:#1d1d1b}
+.payments small{font:400 16px/1.6 var(--f-body)}
+.footer__legal{background:var(--bg);color:var(--text-light);display:flex;flex-wrap:wrap;justify-content:center;gap:4px 21.33px;padding:10.67px 21.33px;font:400 16px/1.6 var(--f-body)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1500px){
+  .nav{gap:12px}
+  .fh{grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr) minmax(0,1fr)}
+  .fh__callouts{padding-left:0}
+  .fj,.fl{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr)}
+  .footer__blocks{grid-template-columns:1.3fr repeat(3,1fr)}
+}
+@media (max-width:1180px){
+  .nav,.locale{display:none}
+  .burger{display:grid}
+  .fh{grid-template-columns:1fr 1fr;min-height:0}
+  .fh__callouts{grid-column:1 / -1;order:3;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .callout{max-width:none}
+  .callout::after,.callout::before{display:none}
+  .fh__product{order:1}
+  .fh__text{order:2}
+  .rail__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fj{grid-template-columns:1fr 1fr}
+  .winter__products{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .wp{gap:32px}
+  .winter__film{aspect-ratio:16/9}
+  .fj__text{grid-column:1 / -1;max-width:560px}
+  .fj__spec{margin-top:0;align-self:center}
+  .fj__product{width:100%;max-width:560px}
+  .footer__blocks{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .bar{height:64px;padding:0 16px;border-radius:0 0 10px 10px}
+  .site-header.is-scrolled .bar{height:60px}
+  .bar .logo svg{width:150px}
+  .bar__right{gap:16px}
+  .hero__content{justify-content:flex-end;padding:0 20px 56px}
+  .hero__frames{transform:none}
+  .hero__frames img{object-position:55% 40%}
+  .hero-stage{height:220vh}
+  .hero__media::after{background:linear-gradient(0deg,rgba(10,16,12,.75) 0%,rgba(10,16,12,.2) 50%,rgba(10,16,12,0) 70%)}
+  .fh,.fj{grid-template-columns:1fr}
+  .winter__intro{min-height:0;padding:56px 20px 40px;gap:24px}
+  .winter__film{aspect-ratio:4/5}
+  .winter__products{grid-template-columns:1fr;gap:56px;padding:32px 20px 72px}
+  .wp{gap:20px}
+  .wp__img{max-width:420px;width:100%;margin:0 auto}
+  .fh__callouts{grid-template-columns:1fr}
+  .rail{padding:40px 12px}
+  .rail__grid{gap:8px}
+  .card__media,.card__body{padding:8px}
+  .card__name{padding-right:0}
+  .atc{display:none}
+  .banner{min-height:640px;align-items:flex-end;padding-bottom:56px}
+  .banner__content{padding:0 20px}
+  .banner--dirty .banner__media img{transform:none;object-position:62% 30%}
+  .banner--dirty .banner__media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,0) 60%)}
+  .footer__blocks{grid-template-columns:1fr;padding:56px 20px 0}
+  .footer__utility{padding:32px 20px;flex-direction:column;align-items:flex-start}
+  .payments{align-items:flex-start}
+  .payments ul{flex-wrap:wrap;gap:10px}
+  .region__field{font-size:16px;height:52px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.hero-stage{height:auto}.hero{position:relative}.js .site-header{transform:none}}
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-inline" viewBox="0 0 323 28"><g fill="currentColor"><path d="M279.695 3.70837L258.892 27.498H272.127L276.079 23.5431L297.835 23.4908L301.515 27.4947H314.992L294.365 3.71838L279.695 3.70948V3.70837ZM279.949 17.6897C282.309 14.887 284.494 12.2889 286.854 9.48062C289.228 12.201 291.513 14.8247 294.01 17.6897H279.949Z"/><path d="M147.602 4.9073C144.777 4.22442 141.811 3.82514 138.902 3.79067C127.913 3.66388 104.241 3.73839 104.241 3.73839V27.4702C104.241 27.4702 127.699 27.567 138.965 27.5358C142.522 27.5269 146.067 27.2333 149.389 25.8008C151.871 24.7276 153.723 23.0015 153.964 20.1765C154.157 17.921 154.069 15.6432 154.078 13.3788C154.087 8.58196 152.319 6.05508 147.603 4.9073H147.602ZM142.399 16.9656C142.426 19.3535 141.543 20.6236 139.416 21.1397C138.087 21.46 136.678 21.5823 135.306 21.5912C128.878 21.639 115.849 21.6134 115.849 21.6134V9.67747L135.828 9.76978C136.644 9.77423 138.925 9.96663 139.702 10.2347C143.142 11.4392 142.37 14.3998 142.4 16.9667L142.399 16.9656Z"/><path d="M86.4714 20.8216L63.9263 3.74729L47.0107 3.75619V27.4535H58.5083V10.3526L81.1983 27.4925L98.0793 27.4669V3.72505H86.4714V20.8216Z"/><path d="M256.161 15.2106C258.727 11.0099 256.473 5.75368 251.673 4.6237C249.054 4.01088 246.307 3.74284 243.614 3.71726C243.614 3.71726 211.01 3.73061 211.01 3.71726V27.4936H222.811V21.5145L242.437 21.5845C244.442 21.7514 245.035 22.4698 245.061 24.4629V27.4936H256.765C256.788 25.4572 256.691 23.4853 256.392 21.6023C256.01 19.2412 253.778 18.8252 252.321 18.2914C253.716 17.5996 255.353 16.5397 256.16 15.2117L256.161 15.2106ZM243.004 15.2684C242.583 15.3863 242.136 15.4742 241.701 15.4742C235.669 15.443 229.632 15.3997 223.6 15.3518C223.385 15.3518 223.166 15.2951 222.802 15.2428V9.85097C223.363 9.81204 223.89 9.74086 224.417 9.74086C229.786 9.73197 235.16 9.73197 240.535 9.74086C241.25 9.74086 241.974 9.78424 242.685 9.87655C244.031 10.0512 244.962 10.7174 245.102 12.1632C245.26 13.7314 244.514 14.8347 243.004 15.2684Z"/><path d="M11.6691 18.1646H39.5398V13.0441H11.6914V9.52622H41.2374V3.74952H0V27.4591H41.7075V21.6513H11.6691V18.1646Z"/><path d="M194.716 17.2893C194.659 20.4034 193.58 21.4633 190.439 21.4989C185.284 21.5556 180.125 21.5556 174.97 21.4944C171.759 21.46 170.759 20.3689 170.736 17.1058L170.644 3.75953H159.145C159.145 3.75953 159.084 15.056 159.172 20.6414C159.215 23.4486 160.681 25.495 163.375 26.4192C165.033 26.9886 166.787 27.5848 168.512 27.6193C176.94 27.7772 185.375 27.8606 193.807 27.7327C196.527 27.6893 199.3 27.1366 201.941 26.4314C204.512 25.7441 206.191 23.6543 206.315 20.925L206.372 3.74952H194.712L194.716 17.2893Z"/><path d="M322.648 6.92258C322.292 2.70851 318.703 -0.147584 314.865 0.00589809C310.764 0.168277 307.399 3.66388 307.684 8.02142C307.951 12.1043 311.562 15.2139 315.703 14.9381C319.805 14.6712 322.941 11.0443 322.648 6.92258ZM315.475 13.7425C312.032 13.9049 309.048 11.2234 308.887 7.82457C308.72 4.34231 311.392 1.38501 314.857 1.21929C318.288 1.05247 321.267 3.71615 321.443 7.10609C321.626 10.5928 318.942 13.5801 315.476 13.7425H315.475Z"/><path d="M316.777 11.1333C317.04 10.5995 317.361 10.0868 317.668 9.53511C318.097 9.96887 318.471 10.3414 318.901 10.7796C318.848 8.47965 318.8 6.25972 318.751 4.02534C316.492 3.93748 314.272 3.85073 311.987 3.76287C312.412 4.19662 312.785 4.5781 313.184 4.98961C312.768 5.23874 312.394 5.50677 311.987 5.70363C311.693 5.84377 311.355 5.91383 311.025 5.95832C310.846 5.98057 310.648 5.87046 310.385 5.80484C312.578 8.02588 314.719 10.2024 316.86 12.3756C316.641 11.9686 316.575 11.5437 316.776 11.1355L316.777 11.1333Z"/><path d="M317.147 10.853C316.958 11.2345 316.853 11.6238 317.007 12.0442C317.165 12.4868 317.476 12.6704 317.91 12.5091C318.275 12.3734 318.603 12.1543 319.003 11.9486C318.446 11.3747 317.955 10.8708 317.437 10.3414C317.332 10.525 317.226 10.6829 317.147 10.8542V10.853Z"/><path d="M312.329 5.20649C311.815 4.68932 311.319 4.18995 310.771 3.6383C310.565 3.97529 310.355 4.25112 310.219 4.56253C309.96 5.16311 310.271 5.63579 310.934 5.68361C311.456 5.71809 311.891 5.5001 312.329 5.20649Z"/></g></symbol>
+  <symbol id="chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 7.75L9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15L21 22"/><path d="M10.58 17.16a7.58 7.58 0 1 0 0-15.16 7.58 7.58 0 0 0 0 15.16Z"/></g></symbol>
+  <symbol id="account" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3.25a3.76 3.75 0 1 1 0 7.5 3.76 3.75 0 0 1 0-7.5Z"/><path d="M12 13.25c2.35 0 4.33.22 5.76 1.1l.28.19c1.38 1.01 2.14 2.7 2.22 5.44l.03.77H3.71l.03-.77c.08-2.72.84-4.42 2.21-5.43C7.42 13.49 9.5 13.25 12 13.25Z"/></g></symbol>
+  <symbol id="bag" viewBox="0 0 24 24"><path d="M17 3c0 3.31-2.24 6-5 6S7 6.31 7 3M3.81 3 3.01 15.33a5.2 5.2 0 0 0 5.17 5.67h7.64a5.2 5.2 0 0 0 5.17-5.66L20.18 3H3.81Z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="ig" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2.67"><rect x="3.33" y="3.33" width="25.33" height="25.33" rx="6.67"/><circle cx="16" cy="16" r="5.67"/></g><circle cx="23.33" cy="8.67" r="2" fill="currentColor"/></symbol>
+  <symbol id="fb" viewBox="0 0 32 32"><path fill="currentColor" d="M30 16.09C30 8.35 23.73 2.08 16 2.08S2 8.35 2 16.09c0 6.98 5.12 12.78 11.81 13.83v-9.79H10.26v-4.04h3.55V13c0-3.51 2.09-5.45 5.29-5.45 1.53 0 3.13.27 3.13.27v3.45h-1.77c-1.74 0-2.28 1.08-2.28 2.19v2.63h3.88l-.62 4.04h-3.26v9.79C24.88 28.87 30 23.07 30 16.09Z"/></symbol>
+  <symbol id="yt" viewBox="0 0 32 32"><path fill="currentColor" d="M26.15 4.26c-4.8-.35-15.51-.35-20.31 0C.65 4.63.04 7.95 0 16.67c.04 8.7.65 12.03 5.85 12.41 4.8.34 15.5.35 20.31 0 5.2-.38 5.81-3.69 5.85-12.41-.04-8.7-.65-12.03-5.85-12.41ZM12 22.3V11.04l10.67 5.62L12 22.3Z" transform="translate(0 -.67)"/></symbol>
+</svg>
+
+<header class="site-header" id="top">
+  <div class="bar">
+    <div class="bar__left">
+      <a class="logo" href="#top" aria-label="Endura home"><svg viewBox="0 0 323 28" aria-hidden="true"><use href="#logo-inline"/></svg></a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="#">Men <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#">Women <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#">Kids <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#">Footwear <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#helmets">Helmets <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#">Explore <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+          <li><a href="#" class="sale">Sale <svg aria-hidden="true"><use href="#chev"/></svg></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="bar__right">
+      <button class="locale" type="button">United Kingdom | GBP £ <svg aria-hidden="true"><use href="#chev"/></svg></button>
+      <a class="icon-btn" href="#" aria-label="Search"><svg><use href="#search"/></svg></a>
+      <a class="icon-btn" href="#" aria-label="Account"><svg><use href="#account"/></svg></a>
+      <a class="icon-btn" href="#" aria-label="Bag, 4 items"><svg><use href="#bag"/></svg><span class="bag-count" aria-hidden="true">4</span></a>
+      <button class="icon-btn burger" type="button" aria-label="Menu"><svg><use href="#menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 1 · Hero -->
+  <div class="hero-stage" data-fx="hero">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <div class="hero__frames">
+        <img src="assets/hero.jpg" alt="Rider grinning through a mud-splattered SingleTrack full face helmet in a rainy forest" fetchpriority="high">
+        <img src="assets/hero-glitch.jpg" alt="" data-frame="2">
+        <img src="assets/hero-skull.jpg" alt="" data-frame="3">
+      </div>
+    </div>
+    <div class="hero__content stack">
+      <h1 class="h1" id="hero-title">Protection for your melon</h1>
+      <p class="lede">Some say its the only piece of riding kit that’s a non-negotiable. Correct. Luckily we got you covered with a great range of lids.</p>
+      <a class="btn" href="#helmets">Explore helmets</a>
+    </div>
+  </section>
+  </div>
+
+  <!-- 2 · Helmet feature -->
+  <section class="feature-helmet" id="helmets" data-fx="helmet" aria-labelledby="fh-title">
+    <div class="fh">
+      <ul class="fh__callouts">
+        <li class="callout">Large Vents Including Top “Air Intake” Zone And Large Diameter Koroyd Tubes</li>
+        <li class="callout">Fully Goggle Compatible</li>
+        <li class="callout">Full Integrated Koroyd® Core For Superior Energy Absorption</li>
+        <li class="callout">Mips® Brain Protection System Reducing Multi-Directional Impacts</li>
+      </ul>
+      <div class="fh__product">
+        <img src="assets/helmet-singletrack-ff.webp" alt="SingleTrack Full Face Mips® helmet in olive, white and brick red, three-quarter view" loading="lazy">
+        <div class="shadow"></div>
+      </div>
+      <div class="fh__text stack">
+        <p class="eyebrow">SingleTrack Full Face Mips® Helmet</p>
+        <h2 class="h2" id="fh-title">Keep the noggin under wraps</h2>
+        <p class="copy">The Mips® system is engineered to help manage rotational forces in certain impacts, adding an additional layer of protection alongside the helmet’s core structure. At the heart of the construction are 3D formed Koroyd® inserts, which enhance airflow and improve energy absorption within an exceptionally lightweight build. The result is a highly breathable full face helmet that offers impact protection beyond standard construction.</p>
+        <a class="btn" href="#">Discover more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Helmet rail -->
+  <section class="rail rail--olive" aria-label="Helmets">
+    <div class="rail__grid">
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/helmet-singletrack-brick.webp" alt="SingleTrack Mips® helmet in Brick Red" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">SingleTrack Helmet Mips® - Brick Red</h3><p class="card__price">£140.00</p>
+          <ul class="tags"><li>Helmets</li><li>MIPS</li><li>Open Face</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/helmet-urban-luminite.webp" alt="Urban Luminite Mips® helmet in Black" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Urban Luminite Mips® Helmet - Black</h3><p class="card__price">£100.00</p>
+          <ul class="tags"><li>Helmets</li><li>MIPS</li><li>Open Face</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/helmet-fs260-black.webp" alt="FS260 Mips® helmet in Black, side view" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">FS260 Mips® Helmet - Black</h3><p class="card__price">£120.00</p>
+          <ul class="tags"><li>Helmets</li><li>MIPS</li><li>Open Face</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/helmet-hummvee-tweed.webp" alt="Kids Hummvee Mips® helmet in Tweed Green" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Kids Hummvee Mips® Helmet - Tweed Green</h3><p class="card__price">£105.00</p>
+          <ul class="tags"><li>Helmets</li><li>MIPS</li><li>Open Face</li></ul></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4 · Dirty banner -->
+  <section class="banner banner--dirty" data-fx="dirty" aria-labelledby="dirty-title">
+    <div class="banner__media"><img src="assets/dirty.jpg" alt="Rider in a SingleTrack jacket launching off a jump through a misty autumn forest" loading="lazy"></div>
+    <div class="banner__content stack">
+      <h2 class="h1" id="dirty-title">We love it<br>when it’s dirty</h2>
+      <div class="sub stack">
+        <p class="lede">Tough gear that’s designed specifically for winter rides in filthy conditions.</p>
+        <a class="btn" href="#jackets">See all jackets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · SingleTrack jacket feature -->
+  <section class="feature-jacket" data-fx="jacket" aria-labelledby="fj-title">
+    <div class="fj">
+      <div class="fj__text stack">
+        <p class="eyebrow">Men's SingleTrack Jacket<br>Yellow Mustard</p>
+        <h2 class="h2" id="fj-title">Keeping you out there</h2>
+        <p class="copy">The SingleTrack collection is where fashion and function meet, with neither compromised. The latest waterproof jacket brings fresh colours and a subtle embossed print to a contemporary yet timeless panel design. Built around ExoShell20™ fabric and backed by a rich feature set, it is made for on and off bike adventures in all kinds of weather.</p>
+        <a class="btn" href="#">Discover more</a>
+      </div>
+      <div class="fj__product">
+        <img src="assets/jacket-singletrack-cut.webp" alt="Men's SingleTrack waterproof jacket in Yellow Mustard, front view" loading="lazy">
+        <div class="shadow"></div>
+      </div>
+      <div class="fj__spec">
+        <p class="copy">Do not be fooled by the clean looks. This is a purpose built riding jacket with a grown on hood for weather protection, a chest pocket for valuables and two front handwarmer pockets for everyday storage. Two large zipped pit vents help manage heat when effort rises, and the weather repel main zip adds extra protection when conditions turn properly wet.</p>
+        <div class="spec-box">
+          <ul>
+            <li>Waterproof &amp; breathable 3-layer fabric</li>
+            <li>Durable water repellent finish</li>
+            <li>Water repellent front zip with storm flap</li>
+            <li>Grown on hood with front adjustment</li>
+            <li>Zipped chest pocket with water repellent zip</li>
+            <li>Pit vents for temperature regulation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Jacket rail -->
+  <section class="rail rail--olive" id="jackets" aria-label="Jackets">
+    <div class="rail__grid">
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/jacket-mt500-tweed.webp" alt="Men's MT500 Waterproof Jacket in Tweed Green" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Men's MT500 Waterproof Jacket - Tweed Green</h3><p class="card__price">£140.00</p>
+          <ul class="tags tags--tan"><li>Jackets</li><li>Waterproof</li><li>Breathable</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/jacket-mt500-polartec-blue.webp" alt="Men's MT500 Polartec® Jacket in Barra Blue" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Men's MT500 Polartec® Jacket - Barra Blue</h3><p class="card__price">£100.00</p>
+          <ul class="tags"><li>Jackets</li><li>Waterproof</li><li>Breathable</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/jacket-mt500-bramble.webp" alt="Women's MT500 Waterproof Jacket in Bramble" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Women's MT500 Waterproof Jacket - Bramble</h3><p class="card__price">£120.00</p>
+          <ul class="tags"><li>Jackets</li><li>Waterproof</li><li>Breathable</li></ul></div>
+      </article>
+      <article class="card">
+        <div class="card__media"><div class="card__img"><img src="assets/jacket-singletrack-tile.webp" alt="Men's SingleTrack jacket in Yellow Mustard" loading="lazy"></div></div>
+        <div class="card__body"><h3 class="card__name">Men's SingleTrack Jacket - Yellow Mustard</h3><p class="card__price">£105.00</p>
+          <ul class="tags"><li>Jackets</li><li>Waterproof</li><li>Breathable</li></ul></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7 · Winter: intro, looping film, product trio -->
+  <section class="winter" data-fx="winter" aria-labelledby="winter-title">
+    <div class="winter__intro">
+      <h2 class="h1" id="winter-title"><span class="accent-lime nowrap">Winter.</span> <span class="nowrap">Bring it.</span></h2>
+      <div class="sub stack">
+        <p class="lede">Dark nights and ‘interesting’ weather is looming. Do your worst we say. Get home safe, then hit the hills and let nature do its worse.</p>
+        <a class="btn btn--lime" href="#">See all winter packs</a>
+      </div>
+    </div>
+
+    <div class="winter__film">
+      <video class="winter__video" src="assets/winter-loop.mp4" poster="assets/winter-poster.jpg" muted loop playsinline preload="metadata" aria-label="Rider in a lime MT500 jacket framed by swirling light trails"></video>
+    </div>
+
+    <div class="winter__products">
+      <article class="wp">
+        <div class="wp__img"><img src="assets/winter-jacket-mt500.webp" alt="Women's MT500 Advanced jacket in Lime Green" loading="lazy"></div>
+        <div class="wp__text stack">
+          <h3 class="eyebrow">Women's MT500 Advanced Jacket<br>Lime Green</h3>
+          <p class="copy">Proper glow up. This high-performance version of the MT500 Waterproof Jacket beats any weather, you also stick out like a sore thumb on the evening ride to the pub... we mean commute from work (ahem). Made from 3-layer Pertex® Shield fabric. Quality stuff. Lightweight, breathable and waterproof.</p>
+          <a class="btn btn--lime" href="#">Shop now</a>
+        </div>
+      </article>
+      <article class="wp">
+        <div class="wp__img"><img src="assets/winter-helmet.webp" alt="Hi-viz yellow Mips helmet with black visor" loading="lazy"></div>
+        <div class="wp__text stack">
+          <h3 class="eyebrow">FS260 Mips Helmet<br>Bright Yellow</h3>
+          <p class="copy">Super light and exceptionally airy, the latest FS260 Helmet feels barely there once it is on. It is built for committed road and gravel riding, combining low weight with serious protection. The helmet incorporates the Mips® Brain Protection System, designed to reduce rotational motion transferred to the brain from angled impacts to the head.</p>
+          <a class="btn btn--lime" href="#">Shop now</a>
+        </div>
+      </article>
+      <article class="wp">
+        <div class="wp__img"><img src="assets/winter-gloves.webp" alt="Strike Gloves in Bright Yellow" loading="lazy"></div>
+        <div class="wp__text stack">
+          <h3 class="eyebrow">Strike Gloves<br>Bright Yellow</h3>
+          <p class="copy">The updated Strike Gloves take one of our best selling gloves and rework them from the ground up to make them better than ever. All the details that made them a favourite stay in place, while new materials and an improved panel design turn them into a proper winter essential for any cyclist. Inside, a soft brushed lining adds that instant pull on warmth.</p>
+          <a class="btn btn--lime" href="#">Shop now</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__blocks">
+    <div class="footer__brand stack">
+      <a class="logo" href="#top" aria-label="Endura home"><svg viewBox="0 0 323 28" aria-hidden="true"><use href="#logo-inline"/></svg></a>
+      <p>Endura makes braw cycling gear designed for ride after ride. Clothing, shoes, protection - we’ve got you covered. And it’s no bother to us what type of cycling you do. Trails, street, gnarmac and tarmac. It’s all grand.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg><use href="#fb"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a>
+      </div>
+    </div>
+    <nav aria-label="Help and information"><h3>Help &amp; Information</h3>
+      <ul><li><a href="#">Contact Us</a></li><li><a href="#">Help Centre &amp; FAQs</a></li><li><a href="#">Returns</a></li><li><a href="#">Delivery Information</a></li><li><a href="#">International Delivery</a></li><li><a href="#">Track Your Order</a></li></ul></nav>
+    <nav aria-label="Useful info"><h3>Useful Info</h3>
+      <ul><li><a href="#">Helmet Crash Replacement</a></li><li><a href="#">Size Guides</a></li><li><a href="#">Care guide</a></li><li><a href="#">Fabrics &amp; Treatment</a></li><li><a href="#">Eyewear Tech</a></li><li><a href="#">Seat Pads</a></li><li><a href="#">Counterfeit Goods</a></li></ul></nav>
+    <nav aria-label="Extras"><h3>Extras</h3>
+      <ul><li><a href="#">Student Discount</a></li><li><a href="#">Industry Pro-Deals</a></li><li><a href="#">Emergency Service Uniforms</a></li><li><a href="#">Klarna</a></li><li><a href="#">Store Locator</a></li></ul></nav>
+  </div>
+  <div class="footer__utility">
+    <div class="region">
+      <label for="region">Country/region</label>
+      <button class="region__field" id="region" type="button">United Kingdom | GBP £ <svg aria-hidden="true"><use href="#chev"/></svg></button>
+    </div>
+    <div class="payments">
+      <ul aria-label="Accepted payment methods"><li style="background:#5a31f4;color:#fff;border-color:#5a31f4">Shop</li><li>VISA</li><li>MC</li><li>Pay</li><li>G Pay</li><li style="background:#1f72cd;color:#fff;border-color:#1f72cd">AMEX</li></ul>
+      <small>2025 © Endura Limited. All rights reserved.</small>
+    </div>
+  </div>
+  <div class="footer__legal"><a href="#">Cookie Policy</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Declarations of Conformity</a><a href="#">Modern Slavery Report</a><a href="#">Section 172 Statement</a></div>
+</footer>
+
+<script>
+/* Winter film: seamless 8.5s loop, plays only while on screen, holds on the poster under reduced motion. */
+(() => {
+  const v = document.querySelector('.winter__video');
+  if (!v) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const io = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !reduce.matches) { v.preload = 'auto'; v.play().catch(() => {}); }
+    else v.pause();
+  }, { rootMargin: '200px 0px' });
+  io.observe(v);
+})();
+</script>
+<script>
+/* Hero sequence + nav reveal
+   p runs 0 → 1 across the hero stage. The image and copy stay put; the frames cross-fade
+   face → glitch → skull. Tune timings in RANGES, overall pace via .hero-stage height. */
+(() => {
+  const header = document.querySelector('.site-header');
+  const stage  = document.querySelector('.hero-stage');
+  const frames = stage.querySelectorAll('.hero__frames img');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+  const RANGES = {
+    frame2: [0.08, 0.38],     // face   → glitch
+    frame3: [0.42, 0.72],     // glitch → skull
+    navIn: 0.9                // nav drops just before the page starts to move
+  };
+  const clamp = v => Math.min(1, Math.max(0, v));
+  const range = (p, [a, b]) => clamp((p - a) / (b - a));
+  const ease  = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    const vh = innerHeight;
+    const travel = stage.offsetHeight - vh;
+    const p = travel > 0 ? clamp(-stage.getBoundingClientRect().top / travel) : 1;
+
+    if (!reduce.matches) {
+      frames[1].style.opacity = ease(range(p, RANGES.frame2));
+      frames[2].style.opacity = ease(range(p, RANGES.frame3));
+    }
+    header.classList.toggle('is-visible', reduce.matches || p >= RANGES.navIn);
+    header.classList.toggle('is-scrolled', scrollY > travel + 8);
+  }
+  const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('resize', request);
+  reduce.addEventListener?.('change', request);
+  frame();
+})();
+</script>
+</body>
+</html>

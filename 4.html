@@ -335,7 +335,22 @@
     footer { padding: 1.25rem; }
   }
 
-  </style>
+  
+  /* DEMO LINK */
+  .cs-demo-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s;
+  }
+  .cs-demo-link:hover { color: var(--accent); }
+</style>
 </head>
 <body>
 
@@ -388,14 +403,16 @@
 <!-- IMAGE FLOW -->
 <div class="cs-images">
 
-  <!-- 1. E1 – full width -->
   <div class="cs-img-full">
-    <img src="images/E1.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En1.jpg" alt="Endura CLP concept" loading="lazy">
   </div>
 
-  <!-- 2. E2 – full width -->
   <div class="cs-img-full">
-    <img src="images/E2.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En2.jpg" alt="Endura CLP concept" loading="lazy">
+  </div>
+
+  <div class="cs-img-full">
+    <video src="images/EnduraSkull.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
   </div>
 
 </div>
@@ -408,19 +425,12 @@
 
 <div class="cs-images" style="padding-top:0;">
 
-  <!-- 3. E3 – full width -->
   <div class="cs-img-full">
-    <img src="images/E3.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En3.jpg" alt="Endura CLP concept" loading="lazy">
   </div>
 
-  <!-- 4. E4 – full width -->
   <div class="cs-img-full">
-    <img src="images/E4.jpg" alt="Endura CLP PLP" loading="lazy">
-  </div>
-
-  <!-- 5. E5 – full width -->
-  <div class="cs-img-full">
-    <img src="images/E5.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En4.jpg" alt="Endura CLP concept" loading="lazy">
   </div>
 
 </div>
@@ -433,29 +443,16 @@
 
 <div class="cs-images" style="padding-top:0;">
 
-  <!-- 6. E6 – full width -->
   <div class="cs-img-full">
-    <img src="images/E6.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En5.jpg" alt="Endura CLP concept" loading="lazy">
   </div>
 
-  <!-- 7. E7 – full width -->
   <div class="cs-img-full">
-    <img src="images/E7.jpg" alt="Endura CLP PLP" loading="lazy">
+    <img src="images/En6.jpg" alt="Endura CLP concept" loading="lazy">
   </div>
 
-  <!-- 8. E8 – full width -->
   <div class="cs-img-full">
-    <img src="images/E8.jpg" alt="Endura CLP PLP" loading="lazy">
-  </div>
-
-  <!-- 9. E9 – full width -->
-  <div class="cs-img-full">
-    <img src="images/E9.jpg" alt="Endura CLP PLP" loading="lazy">
-  </div>
-
-  <!-- Video – full width -->
-  <div class="cs-img-full">
-    <video src="images/Endura1H.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+    <video src="images/EnduraCommute.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
   </div>
 
 </div>
@@ -464,6 +461,7 @@
 <div class="cs-copy-block">
   <span class="cs-copy-label">My Role</span>
   <p>This was a self-initiated project, conceived and executed independently to provide a clear creative direction ahead of the live replatforming work. I developed the full suite of CLP and PLP concepts – with a little help from Ai image generation experimentation, building a vision for how Shopify could unlock a faster, more flexible and more engaging digital experience for Endura's riders, and presenting the teams with a compelling case for what the migration could genuinely achieve.</p>
+  <a href="endura-demo/index.html" class="cs-demo-link" target="_blank" rel="noopener">See a demo of the live page</a>
 </div>
 
 <!-- BOTTOM NAV -->
@@ -494,4 +492,11 @@
     document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
   });
   function closeMenu() {
- 
+     hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+
+</body>
+</html>
